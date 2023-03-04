@@ -27157,46 +27157,34 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "Shrek",
-            image: "https://via.placeholder.com/270x480.png?text=Shrek",
-            director: "Andrew Adamson",
-            genre: "Animation",
-            description: "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back."
-        },
-        {
-            id: 2,
-            title: "The Notebook",
-            image: "https://via.placeholder.com/270x480.png?text=The+Notebook",
-            director: "Nick Cassavetes",
-            genre: "Romance",
-            description: "A poor yet passionate young man (Ryan Gosling) falls in love with a rich young woman (Rachel McAdams), giving her a sense of freedom, but they are soon separated because of their social differences."
-        },
-        {
-            id: 3,
-            title: "Once Upon a Time in Hollywood",
-            image: "https://via.placeholder.com/270x480.png?text=Once+Upon+A+Time+In+Hollywood",
-            director: "Quentin Tarantino",
-            genre: "Comedy",
-            description: "A faded television actor and his stunt double strive to achieve fame and success in the final years of Hollywood's Golden Age in 1969 Los Angeles."
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    // Need to continue with ex. and submit and ask why not working
+    (0, _react.useEffect)(()=>{
+        fetch("https://jackoc-myflix.onrender.com/movies").then((response)=>response.json()).then((data)=>{
+            console.log("Movies loaded from API", data);
+            const moviesFromAPI = data.map((doc)=>{
+                return {
+                    id: doc._id,
+                    Title: doc.Title
+                };
+            });
+            setMovies(moviesFromAPI);
+        });
+    }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 39,
+        lineNumber: 27,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 44,
+        lineNumber: 32,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27207,16 +27195,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 38,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 48,
+        lineNumber: 36,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "74mbmmryHhc+OgFxRT1GiDamXWY=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
