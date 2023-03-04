@@ -27325,7 +27325,7 @@ const MainView = ()=>{
         lineNumber: 39,
         columnNumber: 7
     }, undefined);
-    if (Movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "dist/components/main-view/main-view.jsx",
@@ -27333,7 +27333,7 @@ const MainView = ()=>{
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: Movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
                 onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);

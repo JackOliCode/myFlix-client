@@ -40,13 +40,13 @@ export const MainView = () => {
     );
   }
 
-  if (Movies.length === 0) {
+  if (movies.length === 0) {
     return <div>The list is empty!</div>;
   }
 
   return (
     <div>
-      {Movies.map((movie) => (
+      {movies.map((movie) => (
         <MovieCard
           key={movie.id}
           movie={movie}
