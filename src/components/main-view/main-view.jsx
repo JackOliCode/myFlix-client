@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
                                                                 // Need to continue with ex. and submit and ask why not working
   useEffect(() => {
     fetch('https://jackoc-myflix.onrender.com/movies')
@@ -26,6 +28,12 @@ export const MainView = () => {
         setMovies(moviesFromAPI);
       });
   }, []);
+
+  // if not user is logged in, the LoginView component will be showing
+
+  if (!user) {
+    return <LoginView />;
+  }
 
   if (selectedMovie) {
     return (
