@@ -8,7 +8,8 @@ export const MainView = () => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
-  const [username, setUsername] = useState("");
+  const [token, setToken] = useState(null);
+
                                                                 // Need to continue with ex. and submit and ask why not working
   useEffect(() => {
     fetch('https://jackoc-myflix.onrender.com/movies')
@@ -33,7 +34,14 @@ export const MainView = () => {
   // if not user is logged in, the LoginView component will be showing
 
   if (!user) {
-    return <LoginView />;
+    return (
+    <LoginView 
+      onLoggedIn={(user, token) => {
+        setUser(user);
+        setToken(token);
+      }}
+    />
+    );
   }
 
   if (selectedMovie) {
@@ -57,6 +65,13 @@ export const MainView = () => {
           }}
         />
       ))}
+      <button
+        onClick={() => {
+          setUser(null);
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 };

@@ -17,23 +17,46 @@ export const LoginView = () => {
 
         fetch("http://jackoc-myflix.onrender.com/login", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(data)
+        })
+        .then((response) => response.json()) //This transforms the response content into a JSON object.
+        .then((data) => {
+            console.log("Login Response: ", data);
+            if (data.user) {
+                onLoggedIn(data.user, data.token); //You pass the user and token back to MainView so that they can be used
+            } else {
+                alert("No such user");
+            }
+        })
+        .catch((e) => {
+            alert("Something went wrong");
         });
     };
 
-
-
-
-
+    
     return (
         <form onSubmit={handleSubmit}>
             <label>
                 Username:
-                <input type="text" />
+                <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    minLength="3"
+                />
             </label>
             <label>
                 Password:
-                <input type="password" />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
             </label>
             <button type="submit">Submit</button>
         </form>
