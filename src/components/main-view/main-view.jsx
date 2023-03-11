@@ -8,6 +8,7 @@ export const MainView = () => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("");
                                                                 // Need to continue with ex. and submit and ask why not working
   useEffect(() => {
     fetch('https://jackoc-myflix.onrender.com/movies')
