@@ -10,13 +10,20 @@ export const MainView = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
-                                                                // Need to continue with ex. and submit and ask why not working
+   // useEffect hook allows React to perform side effects in component e.g fetching data
   useEffect(() => {
-    fetch('https://jackoc-myflix.onrender.com/movies')
+    if (!token) {
+      return;
+    }
+    fetch('https://jackoc-myflix.onrender.com/movies', {
+      headers: { Authorization: `Bearer ${token}` } 
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("Movies loaded from API", data);
+
         const moviesFromAPI = data.map((doc) => {
+          
           return {
             id: doc._id,
             Title: doc.Title,
@@ -29,13 +36,13 @@ export const MainView = () => {
         });
         setMovies(moviesFromAPI);
       });
-  }, []);
+  }, [token]);
 
   // if not user is logged in, the LoginView component will be showing
 
   if (!user) {
     return (
-    <LoginView 
+    <LoginView                      // stores token and user
       onLoggedIn={(user, token) => {
         setUser(user);
         setToken(token);
@@ -66,10 +73,11 @@ export const MainView = () => {
         />
       ))}
       <button
-        onClick={() => {
-          setUser(null);
-        }}
-      >
+        onClick={() => 
+        {
+          setUser(null); 
+          setToken(null); 
+        }}>
         Logout
       </button>
     </div>
