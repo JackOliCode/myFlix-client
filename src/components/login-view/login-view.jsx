@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-export const LoginView = () => {
+export const LoginView = ({ onLoggedIn }) => { // need to pass this on as a parameter
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -11,11 +11,11 @@ export const LoginView = () => {
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
 
-        fetch("http://jackoc-myflix.onrender.com/login", {
+        fetch("https://jackoc-myflix.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

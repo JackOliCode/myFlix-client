@@ -28387,7 +28387,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
-const LoginView = ()=>{
+const LoginView = ({ onLoggedIn  })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
@@ -28395,10 +28395,10 @@ const LoginView = ()=>{
         // this is to prevent default behaviour of form, which is to reload the page
         event.preventDefault();
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
-        fetch("http://jackoc-myflix.onrender.com/login", {
+        fetch("https://jackoc-myflix.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
