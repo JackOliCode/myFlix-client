@@ -3,6 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { Col, Row, Button } from "react-bootstrap";
 
 
 export const MainView = () => {
@@ -46,7 +47,66 @@ export const MainView = () => {
 
   // if not user is logged in, the LoginView component will be showing
 
-  if (!user) {
+return (
+  <Row className="justify-content-md-center">
+    {!user ? (
+      <Col>
+        <LoginView onLoggedIn={(user, token) => {
+          setUser(user)
+          setToken(token)
+         }} 
+         />
+        or
+        <SignupView />
+        </Col>
+    ) : selectedMovie ? (
+      <Col style={{ border: "1px solid black" }}>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)} 
+         />
+      </Col>
+    ) : movies.length === 0 ? (
+      <div>The list is empty!</div>
+    ) : (
+      <>
+      {movies.map((movie) => (
+        <Col
+          key={movie.id}
+          style={{ border: "1px solid green" }}
+          >
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+            </Col>
+            ))}
+            </>
+            )}
+          <Col>
+            <Button variant="primary"
+                onClick={() => 
+                {
+                  setUser(null); 
+                  setToken(null);
+                  localStorage.clear(); 
+                }}>
+                Logout
+            </Button>
+          </Col>
+        
+      
+    
+    </Row>
+);
+            };
+        
+
+
+  /* if (!user) {
     return (
     <>
       <LoginView                      // stores token and user
@@ -94,3 +154,4 @@ export const MainView = () => {
     </div>
   );
 };
+*/
