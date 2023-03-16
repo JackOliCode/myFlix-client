@@ -34,6 +34,7 @@ export const MovieView = ({ movie, onBackClick }) => {
       </Row>
     </div>
   );
+};
 
 //below is code for non-card version
 

@@ -41345,6 +41345,45 @@ const MovieView = ({ movie , onBackClick  })=>{
     }, undefined);
 };
 _c = MovieView;
+//below is code for non-card version
+/* export const MovieView = ({ movie, onBackClick }) => {
+    return (
+      <Row className="justify-content-md-center">
+        <Col md={6} className="mb-1">
+        <img src={movie.ImagePath} style={{ width: "100%" }} onClick={onBackClick} />
+      </Col>
+      <div className="mb-1">
+        <span>Title: </span>
+        <span>{movie.Title}</span>
+      </div>
+      <div className="mb-1">
+        <span>Director: </span>
+        <span>{movie.Director.Name}</span>
+      </div>
+      <div className="mb-1">
+        <span>Genre: </span>
+        <span>{movie.Genre.Name}</span>
+      </div>
+      <div className="mb-1">
+        <span>Description: </span>
+        <span>{movie.Description}</span>
+      </div>
+        <button onClick={onBackClick}>Back</button>
+      </Row>
+    );
+  }; */ //PropTypes for the MovieView
+MovieView.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        Title: (0, _propTypesDefault.default).string,
+        Description: (0, _propTypesDefault.default).string,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string
+        }).isRequired,
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string
+        }).isRequired
+    }).isRequired
+};
 var _c;
 $RefreshReg$(_c, "MovieView");
 
