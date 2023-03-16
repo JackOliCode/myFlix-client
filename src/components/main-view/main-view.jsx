@@ -52,12 +52,15 @@ return (
     <Row className="justify-content-md-center">
       {!user ? (
         <Col md={5}>
+          <div className="mb-2" style={{ textDecoration: "underline"}} >Log-in</div>
           <LoginView onLoggedIn={(user, token) => {
             setUser(user)
             setToken(token)
           }} 
           />
-          or
+          <br></br>
+          <div className="mb-2" style={{ textDecoration: "underline"}} >Register</div>
+          
           <SignupView />
           </Col>
       ) : selectedMovie ? (
