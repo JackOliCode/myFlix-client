@@ -5,7 +5,7 @@ export const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
       <Row className="justify-content-md-center">
-        <Col md={6}>
+        <Col md={8}>
           <Card>
             <Card.Img src={movie.ImagePath} onClick={onBackClick} />
           </Card>
