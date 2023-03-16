@@ -64,7 +64,7 @@ return (
           <SignupView />
           </Col>
       ) : selectedMovie ? (
-        <Col md={8}>
+        <Col md={5}>
           <MovieView
             movie={selectedMovie}
             onBackClick={() => setSelectedMovie(null)} 

@@ -3,36 +3,25 @@ import { Card, Col, Row, Button} from "react-bootstrap";
 
 export const MovieView = ({ movie, onBackClick }) => {
   return (
-    <div>
-      <Row className="justify-content-md-center">
-        <Col md={8}>
-          <Card>
-            <Card.Img src={movie.ImagePath} onClick={onBackClick} />
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Card>
+    <Card>
+        <Card.Img src={movie.ImagePath} onClick={onBackClick} />
         <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
-        <Card.Text>
-          <span className="bold_title">Director: </span>
-          <span>{movie.Director.Name}</span>
-        </Card.Text>
-        <Card.Text>
-          <span className="bold_title">Genre: </span>
-          <span>{movie.Genre.Name}</span>
-        </Card.Text>
-        <Card.Text>
-          <div className="bold_title">Description: </div>
-          <div>{movie.Description}</div>
-        </Card.Text>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Card.Text>
+            <span className="bold_title">Director: </span>
+            <span>{movie.Director.Name}</span>
+          </Card.Text>
+          <Card.Text>
+            <span className="bold_title">Genre: </span>
+            <span>{movie.Genre.Name}</span>
+          </Card.Text>
+          <Card.Text>
+            <div className="bold_title">Description: </div>
+            <div>{movie.Description}</div>
+          </Card.Text>
         </Card.Body>
         <Button onClick={onBackClick}>Back</Button>
-        </Card>
-      </Row>
-    </div>
+    </Card>
   );
 };
 
