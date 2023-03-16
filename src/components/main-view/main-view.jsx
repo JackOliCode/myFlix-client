@@ -79,7 +79,6 @@ return (
             className="mb-5"
             >
               <MovieCard
-                key={movie.id}
                 movie={movie}
                 onMovieClick={(newSelectedMovie) => {
                   setSelectedMovie(newSelectedMovie);
