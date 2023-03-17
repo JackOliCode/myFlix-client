@@ -52,14 +52,14 @@ return (
     <Row className="justify-content-md-center">
       {!user ? (
         <Col md={5}>
-          <div className="mb-2" style={{ textDecoration: "underline"}} >Log-in</div>
+          <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Log-in</div>
           <LoginView onLoggedIn={(user, token) => {
             setUser(user)
             setToken(token)
           }} 
           />
           <br></br>
-          <div className="mb-2" style={{ textDecoration: "underline"}} >Register</div>
+          <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Register</div>
           
           <SignupView />
           </Col>
@@ -71,7 +71,7 @@ return (
           />
         </Col>
       ) : movies.length === 0 ? (
-        <div>The list is empty!</div>
+        <div className="greenFont">The list is empty!</div>
       ) : (
         <>
         {movies.map((movie) => (

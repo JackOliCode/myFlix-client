@@ -45,7 +45,7 @@ export const LoginView = ({ onLoggedIn }) => { // need to pass this on as a para
         //start adding refactored Bootstrap code here
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formUsername">
-            <Form.Label>Username:</Form.Label>
+            <Form.Label className="greenFont">Username:</Form.Label>
             <Form.Control
               type="text"
               value={username}
@@ -57,7 +57,7 @@ export const LoginView = ({ onLoggedIn }) => { // need to pass this on as a para
           </Form.Group>
     
           <Form.Group controlId="formPassword">
-            <Form.Label>Password:</Form.Label>
+            <Form.Label className="greenFont">Password:</Form.Label>
             <Form.Control
               type="password"
               value={password}

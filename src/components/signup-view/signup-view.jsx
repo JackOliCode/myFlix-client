@@ -38,7 +38,7 @@ export const SignupView = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
+        <Form.Label className="greenFont">Username:</Form.Label>
         <Form.Control
           type="text"
           value={username}
@@ -50,7 +50,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
+        <Form.Label className="greenFont">Password:</Form.Label>
         <Form.Control
           type="password"
           value={password}
@@ -61,7 +61,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId="formEmail">
-        <Form.Label>Email:</Form.Label>
+        <Form.Label className="greenFont">Email:</Form.Label>
         <Form.Control
           type="email"
           value={email}
@@ -72,7 +72,7 @@ export const SignupView = () => {
       </Form.Group>
 
       <Form.Group controlId="formBirthday">
-        <Form.Label>Birthday:</Form.Label>
+        <Form.Label className="greenFont">Birthday:</Form.Label>
         <Form.Control
           type="date"
           value={birthday}
