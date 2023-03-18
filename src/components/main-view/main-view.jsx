@@ -4,7 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { Col, Row, Button } from "react-bootstrap";
-
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
  
@@ -14,8 +14,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken? storedToken : null);
 
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  
+ 
 
    // useEffect hook allows React to perform side effects in component e.g fetching data
   useEffect(() => {
@@ -48,49 +47,88 @@ export const MainView = () => {
   // if not user is logged in, the LoginView component will be showing
 
 return (
+  <BrowserRouter>
   <div>
     <Row className="justify-content-md-center">
-      {!user ? (
-        <Col md={5}>
-          <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Log-in</div>
-          <LoginView onLoggedIn={(user, token) => {
-            setUser(user)
-            setToken(token)
-          }} 
-          />
-          <br></br>
-          <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Register</div>
-          
-          <SignupView />
-          </Col>
-      ) : selectedMovie ? (
-        <Col md={5}>
-          <MovieView
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)} 
-          />
-        </Col>
-      ) : movies.length === 0 ? (
-        <div className="greenFont">The list is empty!</div>
-      ) : (
-        <>
-        {movies.map((movie) => (
-          <Col
-            key={movie.id}
-            md={3}
-            className="mb-5"
-            >
-              <MovieCard
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie);
-                }}
-              />
+      <Routes>
+        <Route
+        path="/signup"
+        element={
+          <>{user ? (
+            <Navigate to="/" />
+          ) : (
+            <Col md={5}>
+              <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Register</div>
+              <SignupView />
+            </Col>
+          )}
+            </>
+        }
+        />
+
+        <Route 
+        path="/login"
+        element={
+          <>
+            {user ? (
+              <Navigate to="/" />
+            ) : (
+              <Col md={5}>
+                <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Log-in</div>
+                <LoginView onLoggedIn={(user, token) => {
+                  setUser(user)
+                  setToken(token)
+                  }} 
+                />
               </Col>
+            )}              
+          </>
+        }
+        />
+
+      <Route
+        path="/movies/:movieId"
+        element={
+          <>
+          {!user ? (
+            <Navigate to="/login" replace />
+            ) : movies.length === 0 ? (
+              <div className="greenFont">The list is empty!</div>
+            ) : (
+              <Col md={5}>
+                <MovieView
+                  movie={movies} />
+              </Col>
+            )} 
+          </>
+        }
+      />
+
+      <Route
+        path="/"
+        element={
+          <>
+          {!user ? (
+            <Navigate to="/login" replace />
+            ) : movies.length === 0 ? (
+              <div className="greenFont">The list is empty!</div>
+            ) : (
+              <>
+              {movies.map((movie) => (
+                <Col
+                  key={movie.id}
+                  md={3}
+                  className="mb-5"
+                >
+                  <MovieCard movie={movie} />
+                </Col>
               ))}
               </>
-              )}
-            
+            )}
+            </>
+        }
+        />
+        </Routes>
       </Row>
       <Row>
       <Col>
@@ -105,6 +143,7 @@ return (
               </Button>
             </Col>
       </Row>
-    </div>
-);
-            };
+      </div>
+    </BrowserRouter>
+  );
+};
