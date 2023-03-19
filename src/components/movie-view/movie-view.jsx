@@ -10,7 +10,9 @@ export const MovieView = ({ movies }) => {
 
   return (
     <Card>
+      <Link to={`/`}>
         <Card.Img src={movie.ImagePath} />
+      </Link>
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>
