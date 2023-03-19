@@ -97,7 +97,7 @@ return (
             ) : (
               <Col md={5}>
                 <MovieView
-                  movie={movies} />
+                  movies={movies} />
               </Col>
             )} 
           </>

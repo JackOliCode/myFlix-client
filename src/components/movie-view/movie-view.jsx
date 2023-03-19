@@ -1,10 +1,16 @@
 import PropTypes from "prop-types";
 import { Card, Col, Row, Button} from "react-bootstrap";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+
+  const movie = movies.find((m) => m.id === movieId);
+
   return (
     <Card>
-        <Card.Img src={movie.ImagePath} onClick={onBackClick} />
+        <Card.Img src={movie.ImagePath} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>
@@ -20,18 +26,19 @@ export const MovieView = ({ movie, onBackClick }) => {
             <div>{movie.Description}</div>
           </Card.Text>
         </Card.Body>
-        <Button onClick={onBackClick}>Back</Button>
+        <Link to={`/`}>
+        <Button className="w-100">Back</Button>
+        </Link>
     </Card>
   );
 };
 
 //below is code for non-card version
-
-/* export const MovieView = ({ movie, onBackClick }) => {
+/*
     return (
       <Row className="justify-content-md-center">
         <Col md={6} className="mb-1">
-        <img src={movie.ImagePath} style={{ width: "100%" }} onClick={onBackClick} />
+        <img src={movie.ImagePath} style={{ width: "100%" }} />
       </Col>
       <div className="mb-1">
         <span>Title: </span>
@@ -49,11 +56,13 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Description: </span>
         <span>{movie.Description}</span>
       </div>
+      <Link to={`/`}>
         <button onClick={onBackClick}>Back</button>
+      </Link>
       </Row>
     );
-  }; */
-  
+  }; 
+ */
 
   //PropTypes for the MovieView
 
