@@ -1,5 +1,15 @@
-$color: steelblue;
+$primary: Chartreuse;
+$body-bg: #121214;
+$greenFont: Chartreuse;
+$input-color: Chartreuse;
 
-.my-flix {
-  color: $color;
+.greenFont {
+  color: $greenFont;
 }
+
+
+.bold_title {
+  font-weight: bold;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
