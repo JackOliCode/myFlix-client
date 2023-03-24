@@ -139,7 +139,7 @@ return (
         }
         />
         <Route
-            path="/profile"
+            path="/users/:Username"
             element={
               <>
                 {!user ? (
