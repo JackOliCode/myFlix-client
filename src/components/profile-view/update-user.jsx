@@ -10,10 +10,26 @@ export const UpdateView = ({ storedToken, storedUser }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
 
- 
+  const updateUser = (username) => {
+    fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((updatedUser) => {
+        if (updatedUser) {
+          setUser(updatedUser);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = {
       Username: username,
       Password: password,
@@ -22,7 +38,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
     };
 
     fetch(
-      `https://jackoc-myflix.onrender.com/users/${storedUser.Username}`,
+      `https://jackoc-myflix.onrender.com/users/${user.Username}`,
       {
         method: 'PUT',
         body: JSON.stringify(data),
@@ -37,7 +53,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
           alert('Changes saved');
           updateUser(username);
         } else {
-          alert('Something went wrong');
+          alert('Oops, somethings gone wrong');
         }
       })
       .catch((error) => {
@@ -57,23 +73,19 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
                     type='text'
-                    // value={username}
+                    value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     minLength='3'
-                    pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
                     title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
                     placeholder='Enter your name'
                   />
-                  <Form.Text className='text-muted'>
-                    We'll never share your email with anyone else.
-                  </Form.Text>
                 </Form.Group>
                 <Form.Group controlId='forPassword' className='mt-2'>
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
                     type='password'
-                    // value={password}
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
@@ -85,7 +97,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
                     type='email'
-                    // value={email}
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder='Enter email'
@@ -95,7 +107,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Birthday:</Form.Label>
                   <Form.Control
                     type='date'
-                    // value={birthday}
+                    value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
                   />
                 </Form.Group>

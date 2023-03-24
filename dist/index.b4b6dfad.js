@@ -46921,6 +46921,7 @@ var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
 var _userView = require("./user-view");
 var _updateUser = require("./update-user");
+var _deleteUser = require("./delete-user");
 var _s = $RefreshSig$();
 const ProfileView = ()=>{
     _s();
@@ -46943,19 +46944,39 @@ const ProfileView = ()=>{
             setUsernames(usersFromAPI);
         });
     }, []);
-    if (selectedUser) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userView.UserView), {
+    /*
+useEffect (() => {
+        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`{
+            method: 'GET',
+            body: JSON.stringify(data),
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            return {
+                id: doc._id,
+                username: doc.Username,
+                email: doc.Email,
+                faveMovies: doc.FaveMovies
+            };
+        });
+
+        setUsernames(usersFromAPI);
+    });
+    }, []);
+*/ if (selectedUser) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userView.UserView), {
         userData: selectedUser,
         onBackClick: ()=>setSelectedUser(null)
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 41,
+        lineNumber: 65,
         columnNumber: 9
     }, undefined);
     if (usernames.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "No user found"
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 46,
+        lineNumber: 70,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -46964,7 +46985,7 @@ const ProfileView = ()=>{
                 user: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 51,
+                lineNumber: 75,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUser.UpdateView), {
@@ -46972,7 +46993,15 @@ const ProfileView = ()=>{
                 storedUser: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 52,
+                lineNumber: 76,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deleteUser.DeleteUser), {
+                storedToken: storedToken,
+                storedUser: storedUser
+            }, void 0, false, {
+                fileName: "src/components/profile-view/profile-view.jsx",
+                lineNumber: 77,
                 columnNumber: 13
             }, undefined)
         ]
@@ -47074,7 +47103,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj","../movie-card/movie-card":"bwuIu","react-bootstrap":"3AD9A","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","./user-view":"5JA5n","./update-user":"2SBwg"}],"5JA5n":[function(require,module,exports) {
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj","../movie-card/movie-card":"bwuIu","react-bootstrap":"3AD9A","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","./user-view":"5JA5n","./update-user":"2SBwg","./delete-user":"fKFLs"}],"5JA5n":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ed48 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47177,6 +47206,21 @@ const UpdateView = ({ storedToken , storedUser  })=>{
     const [password, setPassword] = (0, _react.useState)();
     const [email, setEmail] = (0, _react.useState)(user.Email);
     const [birthday, setBirthday] = (0, _react.useState)(user.Birthday);
+    const updateUser = (username)=>{
+        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.json()).then((updatedUser)=>{
+            if (updatedUser) {
+                setUser(updatedUser);
+                localStorage.setItem("user", JSON.stringify(updatedUser));
+                window.location.reload();
+            }
+        }).catch((error)=>{
+            console.log(error);
+        });
+    };
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
@@ -47185,7 +47229,7 @@ const UpdateView = ({ storedToken , storedUser  })=>{
             Email: email,
             Birthday: birthday
         };
-        fetch(`https://jackoc-myflix.onrender.com/users/${storedUser.Username}`, {
+        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -47196,7 +47240,7 @@ const UpdateView = ({ storedToken , storedUser  })=>{
             if (response.ok) {
                 alert("Changes saved");
                 updateUser(username);
-            } else alert("Something went wrong");
+            } else alert("Oops, somethings gone wrong");
         }).catch((error)=>{
             console.log(error);
         });
@@ -47215,7 +47259,7 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                 children: "Update user info"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/update-user.jsx",
-                                lineNumber: 54,
+                                lineNumber: 70,
                                 columnNumber: 15
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -47229,56 +47273,17 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                                 children: "Username:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/update-user.jsx",
-                                                lineNumber: 57,
-                                                columnNumber: 19
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                                type: "text",
-                                                // value={username}
-                                                onChange: (e)=>setUsername(e.target.value),
-                                                required: true,
-                                                minLength: "3",
-                                                pattern: "^[A-Za-z0-9 .,'\\-!?%&]+$",
-                                                title: "Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&",
-                                                placeholder: "Enter your name"
-                                            }, void 0, false, {
-                                                fileName: "src/components/profile-view/update-user.jsx",
-                                                lineNumber: 58,
-                                                columnNumber: 19
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Text, {
-                                                className: "text-muted",
-                                                children: "We'll never share your email with anyone else."
-                                            }, void 0, false, {
-                                                fileName: "src/components/profile-view/update-user.jsx",
-                                                lineNumber: 68,
-                                                columnNumber: 19
-                                            }, undefined)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/profile-view/update-user.jsx",
-                                        lineNumber: 56,
-                                        columnNumber: 17
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                                        controlId: "forPassword",
-                                        className: "mt-2",
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                                                children: "Password:"
-                                            }, void 0, false, {
-                                                fileName: "src/components/profile-view/update-user.jsx",
                                                 lineNumber: 73,
                                                 columnNumber: 19
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                                type: "password",
-                                                // value={password}
-                                                onChange: (e)=>setPassword(e.target.value),
+                                                type: "text",
+                                                value: username,
+                                                onChange: (e)=>setUsername(e.target.value),
                                                 required: true,
-                                                pattern: "^[A-Za-z0-9 .,'\\-!?%&]+$",
-                                                title: "Password may only contain letters, numbers and special characters: .,'-!?%&",
-                                                placeholder: "Create a password"
+                                                minLength: "3",
+                                                title: "Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&",
+                                                placeholder: "Enter your name"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/update-user.jsx",
                                                 lineNumber: 74,
@@ -47291,22 +47296,24 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                                        controlId: "forEmail",
+                                        controlId: "forPassword",
                                         className: "mt-2",
                                         children: [
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                                                children: "Email:"
+                                                children: "Password:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/update-user.jsx",
                                                 lineNumber: 85,
                                                 columnNumber: 19
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                                type: "email",
-                                                // value={email}
-                                                onChange: (e)=>setEmail(e.target.value),
+                                                type: "password",
+                                                value: password,
+                                                onChange: (e)=>setPassword(e.target.value),
                                                 required: true,
-                                                placeholder: "Enter email"
+                                                pattern: "^[A-Za-z0-9 .,'\\-!?%&]+$",
+                                                title: "Password may only contain letters, numbers and special characters: .,'-!?%&",
+                                                placeholder: "Create a password"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/update-user.jsx",
                                                 lineNumber: 86,
@@ -47319,6 +47326,34 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
+                                        controlId: "forEmail",
+                                        className: "mt-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
+                                                children: "Email:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/update-user.jsx",
+                                                lineNumber: 97,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
+                                                type: "email",
+                                                value: email,
+                                                onChange: (e)=>setEmail(e.target.value),
+                                                required: true,
+                                                placeholder: "Enter email"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/update-user.jsx",
+                                                lineNumber: 98,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/update-user.jsx",
+                                        lineNumber: 96,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
                                         controlId: "forBirthday",
                                         className: "mt-2",
                                         children: [
@@ -47326,22 +47361,22 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                                 children: "Birthday:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/update-user.jsx",
-                                                lineNumber: 95,
+                                                lineNumber: 107,
                                                 columnNumber: 19
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                                 type: "date",
-                                                // value={birthday}
+                                                value: birthday,
                                                 onChange: (e)=>setBirthday(e.target.value)
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/update-user.jsx",
-                                                lineNumber: 96,
+                                                lineNumber: 108,
                                                 columnNumber: 19
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/update-user.jsx",
-                                        lineNumber: 94,
+                                        lineNumber: 106,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -47354,49 +47389,49 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                                 children: "Update"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/update-user.jsx",
-                                                lineNumber: 104,
+                                                lineNumber: 116,
                                                 columnNumber: 21
                                             }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/update-user.jsx",
-                                            lineNumber: 103,
+                                            lineNumber: 115,
                                             columnNumber: 19
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/update-user.jsx",
-                                        lineNumber: 102,
+                                        lineNumber: 114,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/update-user.jsx",
-                                lineNumber: 55,
+                                lineNumber: 71,
                                 columnNumber: 15
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 53,
+                        lineNumber: 69,
                         columnNumber: 13
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 52,
+                    lineNumber: 68,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 51,
+                lineNumber: 67,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/profile-view/update-user.jsx",
-            lineNumber: 50,
+            lineNumber: 66,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/profile-view/update-user.jsx",
-        lineNumber: 49,
+        lineNumber: 65,
         columnNumber: 5
     }, undefined);
 };
@@ -47410,7 +47445,70 @@ $RefreshReg$(_c, "UpdateView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fKFLs":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1aa7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1aa7.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DeleteUser", ()=>DeleteUser);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactBootstrap = require("react-bootstrap");
+const DeleteUser = ({ storedToken , storedUser  })=>{
+    const handleDeregister = ()=>{
+        const userWarning = confirm(`I respect your decision, but so you know, deleting your account is permanent.`);
+        userWarning === false ? alert("Phew! That was close!") : fetch(`https://movie-api-zhikiki.herokuapp.com/users/${storedUser.Username}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${storedToken}`,
+                "Content-Type": "application/json"
+            }
+        }).then((response)=>{
+            if (response.ok) {
+                alert("Account successfully deleted");
+                localStorage.clear();
+                window.location.reload();
+            } else alert("Something went wrong");
+        }).catch((e)=>console.log(e));
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+        md: 5,
+        className: "text-end px-4",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                onClick: ()=>handleDeregister(storedUser._id),
+                className: "button-delete",
+                variant: "danger",
+                children: "Delete Account"
+            }, void 0, false, {
+                fileName: "src/components/profile-view/delete-user.jsx",
+                lineNumber: 36,
+                columnNumber: 9
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/profile-view/delete-user.jsx",
+            lineNumber: 35,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/profile-view/delete-user.jsx",
+        lineNumber: 34,
+        columnNumber: 5
+    }, undefined);
+};
+_c = DeleteUser;
+var _c;
+$RefreshReg$(_c, "DeleteUser");
+
+  $parcel$ReactRefreshHelpers$1aa7.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

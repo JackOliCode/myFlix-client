@@ -7,6 +7,7 @@ import { SignupView } from "../signup-view/signup-view";
 import { UserView } from "./user-view";
 import { UpdateView } from "./update-user";
 import { UpdateView } from "./update-user";
+import { DeleteUser } from "./delete-user";
 
 export const ProfileView = () => {
     const [usernames, setUsernames] = useState([]);
@@ -35,6 +36,29 @@ export const ProfileView = () => {
     });
     }, []);
 
+/*
+useEffect (() => {
+        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`{
+            method: 'GET',
+            body: JSON.stringify(data),
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            return {
+                id: doc._id,
+                username: doc.Username,
+                email: doc.Email,
+                faveMovies: doc.FaveMovies
+            };
+        });
+
+        setUsernames(usersFromAPI);
+    });
+    }, []);
+*/
+
+
 
     if (selectedUser) {
         return (
@@ -50,6 +74,8 @@ export const ProfileView = () => {
         <>
             <UserView user={storedUser} />
             <UpdateView storedToken={storedToken} storedUser={storedUser} />
+            <DeleteUser storedToken={storedToken} storedUser={storedUser} />
+            
         </>
     );
                 };
