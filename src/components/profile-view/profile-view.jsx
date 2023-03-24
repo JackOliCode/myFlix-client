@@ -4,8 +4,9 @@ import { MovieCard } from "../movie-card/movie-card";
 import { Button, Form, Row, Col, } from "react-bootstrap";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import { UserCard } from "./user-card";
 import { UserView } from "./user-view";
+import { UpdateView } from "./update-user";
+import { UpdateView } from "./update-user";
 
 export const ProfileView = () => {
     const [usernames, setUsernames] = useState([]);
@@ -13,7 +14,8 @@ export const ProfileView = () => {
     const [selectedUser, setSelectedUser] = useState(null); // new state variable with initial null value (no user selected)
 
     const [user, setUser] = useState(null);
-
+    const storedToken = localStorage.getItem('token');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
 
     useEffect (() => {
         fetch("https://jackoc-myflix.onrender.com/users")
@@ -45,17 +47,10 @@ export const ProfileView = () => {
     }
 
     return (
-        <div>
-            {usernames.map((user) => ( // user is the object found by mapping the users array
-                <UserCard 
-                key={user.id} 
-                userData={user} 
-                onUserClick={(newSelectedUser) => {
-                    setSelectedUser(newSelectedUser);
-                    }}
-                    /> //this user object is being passed as a prop called userData
-                ))}
-        </div>
+        <>
+            <UserView user={storedUser} />
+            <UpdateView storedToken={storedToken} storedUser={storedUser} />
+        </>
     );
                 };
 
