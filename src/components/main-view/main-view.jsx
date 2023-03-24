@@ -146,7 +146,10 @@ return (
                   <Navigate to="/login" replace />
                 ) : (
                   <Col>
-                    <ProfileView user={user} movies={movies} />
+                    <ProfileView 
+                    user={user}
+                    movies={movies}
+                    token={token} />
                   </Col>
                 )}
               </>
