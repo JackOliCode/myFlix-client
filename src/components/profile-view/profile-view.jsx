@@ -8,9 +8,12 @@ import { UserCard } from "./user-card";
 import { UserView } from "./user-view";
 
 export const ProfileView = () => {
-    const [users, setUser] = useState([]);
+    const [usernames, setUsernames] = useState([]);
 
     const [selectedUser, setSelectedUser] = useState(null); // new state variable with initial null value (no user selected)
+
+    const [user, setUser] = useState(null);
+
 
     useEffect (() => {
         fetch("https://jackoc-myflix.onrender.com/users")
@@ -26,9 +29,10 @@ export const ProfileView = () => {
             };
         });
 
-        setUser(usersFromAPI);
+        setUsernames(usersFromAPI);
     });
     }, []);
+
 
     if (selectedUser) {
         return (
@@ -36,13 +40,13 @@ export const ProfileView = () => {
         );
     }
 
-    if (users.length === 0) {
+    if (usernames.length === 0) {
         return <div>No user found</div>;
     }
 
     return (
         <div>
-            {users.map((user) => ( // user is the object found by mapping the users array
+            {usernames.map((user) => ( // user is the object found by mapping the users array
                 <UserCard 
                 key={user.id} 
                 userData={user} 
