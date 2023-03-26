@@ -21,8 +21,8 @@ export const ProfileView = () => {
 
     const [selectedUser, setSelectedUser] = useState(null); // new state variable with initial null value (no user selected)
 
-    const setUsername=()=>{
-        fetch('https://jackoc-myflix.onrender.com/users/${user.username}',
+    useEffect (() => {
+        fetch('https://jackoc-myflix.onrender.com/users/${user.Username}',
         {
             headers : {
             'Content-Type': 'application/json',
@@ -30,21 +30,20 @@ export const ProfileView = () => {
         }
         )
         .then((response) => response.json())
-        
-        .then(function(usersFromAPI) {
-            console.log(usersFromAPI);
-            setUsernames(usersFromAPI)
-        });
-    }
-useEffect(()=>{
-    setUsername()
-},[])
-return (
-    <div>
-        {usernames && usernames.length>0 && usernames.map((item)=><p>{item.about}</p>)}
-    </div>
-);
-}
+        .then((data) => {
+            console.log(data)
+            setUsernames(data); {
+            return {
+                id: usernames._id,
+                username: doc.Username,
+                email: doc.Email,
+                faveMovies: doc.FaveMovies
+            };
+    }});
+
+    });
+
+    }, [];
 
 return (
     <>
@@ -69,16 +68,15 @@ return (
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
-            const usersFromAPI = data.map((doc) => {
+            setUsernames(data); {
             return {
-                id: doc._id,
+                id: usernames._id,
                 username: doc.Username,
                 email: doc.Email,
                 faveMovies: doc.FaveMovies
             };
         });
 
-        setUsernames(usersFromAPI);
     });
     }, []);
 
