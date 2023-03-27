@@ -10,35 +10,10 @@ import { UpdateView } from "./update-user";
 import { DeleteUser } from "./delete-user";
 
 export const ProfileView = () => {
-    const [usernames, setUsernames] = useState([]);
-
     const [selectedUser, setSelectedUser] = useState(null); // new state variable with initial null value (no user selected)
-
     const [user, setUser] = useState(null);
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'));
-
-    useEffect (() => {
-        fetch('https://jackoc-myflix.onrender.com/users/${user.Username}',
-        {
-            headers : {
-            'Content-Type': 'application/json',
-                },
-        }
-        )
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            setUsernames(data); {
-            return {
-                id: usernames._id,
-                username: usernames.Username,
-                email: usernames.Email,
-                faveMovies: usernames.FaveMovies
-            };
-    }});
-
-    });
 
     return (
         <>

@@ -46925,34 +46925,17 @@ var _deleteUser = require("./delete-user");
 var _s = $RefreshSig$();
 const ProfileView = ()=>{
     _s();
-    const [usernames, setUsernames] = (0, _react.useState)([]);
     const [selectedUser, setSelectedUser] = (0, _react.useState)(null); // new state variable with initial null value (no user selected)
     const [user, setUser] = (0, _react.useState)(null);
     const storedToken = localStorage.getItem("token");
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    (0, _react.useEffect)(()=>{
-        fetch("https://jackoc-myflix.onrender.com/users/${user.Username}", {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((response)=>response.json()).then((data)=>{
-            console.log(data);
-            setUsernames(data);
-            return {
-                id: usernames._id,
-                username: usernames.Username,
-                email: usernames.Email,
-                faveMovies: usernames.FaveMovies
-            };
-        });
-    });
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userView.UserView), {
                 user: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 45,
+                lineNumber: 20,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUser.UpdateView), {
@@ -46960,7 +46943,7 @@ const ProfileView = ()=>{
                 storedUser: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 46,
+                lineNumber: 21,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deleteUser.DeleteUser), {
@@ -46968,7 +46951,7 @@ const ProfileView = ()=>{
                 storedUser: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 47,
+                lineNumber: 22,
                 columnNumber: 13
             }, undefined)
         ]
@@ -47060,7 +47043,7 @@ export const ProfileView = ({movies, onUpdatedUserInfo}) => {
 </>
 
 */ 
-_s(ProfileView, "GNoPUf52gzkY0ahTgMOdmZts4j8=");
+_s(ProfileView, "KILkZzzaGkrKwOCQbE5w4FAiWU8=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");
@@ -47086,7 +47069,6 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 const UserView = ({ user  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-        className: "d-flex flex-column flex-lg-row ms-2 text-lg-center mt-lg-3 mt-3",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                 children: [
@@ -47132,6 +47114,29 @@ const UserView = ({ user  })=>{
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-view.jsx",
                 lineNumber: 12,
+                columnNumber: 11
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Birthday: "
+                    }, void 0, false, {
+                        fileName: "src/components/profile-view/user-view.jsx",
+                        lineNumber: 17,
+                        columnNumber: 13
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "fw-bolder",
+                        children: user.Birthday
+                    }, void 0, false, {
+                        fileName: "src/components/profile-view/user-view.jsx",
+                        lineNumber: 18,
+                        columnNumber: 13
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/profile-view/user-view.jsx",
+                lineNumber: 16,
                 columnNumber: 11
             }, undefined)
         ]
@@ -47180,7 +47185,7 @@ const UpdateView = ({ storedToken , storedUser  })=>{
             }
         }).then((response)=>response.json()).then((updatedUser)=>{
             if (updatedUser) {
-                console.log(updateUser);
+                console.log(updatedUser);
                 setUser(updatedUser);
                 localStorage.setItem("user", JSON.stringify(updatedUser));
                 window.location.reload();
