@@ -10,7 +10,6 @@ import { UpdateView } from "./update-user";
 import { DeleteUser } from "./delete-user";
 
 export const ProfileView = () => {
-    const [selectedUser, setSelectedUser] = useState(null); // new state variable with initial null value (no user selected)
     const [user, setUser] = useState(null);
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'));

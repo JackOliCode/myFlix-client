@@ -3,13 +3,13 @@ import { Button, Col } from 'react-bootstrap';
 export const DeleteUser = ({ storedToken, storedUser }) => {
   const handleDeregister = () => {
     const userWarning = confirm(
-      `I respect your decision, but so you know, deleting your account is permanent.`
+      `Are you sure? Deleting your account is permanent.`
     );
 
     userWarning === false
       ? alert('Phew! That was close!')
       : fetch(
-          `https://movie-api-zhikiki.herokuapp.com/users/${storedUser.Username}`,
+          `https://jackoc-myflix.onrender.com/users/${storedUser.Username}`,
           {
             method: 'DELETE',
             headers: {

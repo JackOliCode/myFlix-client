@@ -46925,7 +46925,6 @@ var _deleteUser = require("./delete-user");
 var _s = $RefreshSig$();
 const ProfileView = ()=>{
     _s();
-    const [selectedUser, setSelectedUser] = (0, _react.useState)(null); // new state variable with initial null value (no user selected)
     const [user, setUser] = (0, _react.useState)(null);
     const storedToken = localStorage.getItem("token");
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -46935,7 +46934,7 @@ const ProfileView = ()=>{
                 user: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 20,
+                lineNumber: 19,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUser.UpdateView), {
@@ -46943,7 +46942,7 @@ const ProfileView = ()=>{
                 storedUser: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 21,
+                lineNumber: 20,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deleteUser.DeleteUser), {
@@ -46951,7 +46950,7 @@ const ProfileView = ()=>{
                 storedUser: storedUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 22,
+                lineNumber: 21,
                 columnNumber: 13
             }, undefined)
         ]
@@ -47043,7 +47042,7 @@ export const ProfileView = ({movies, onUpdatedUserInfo}) => {
 </>
 
 */ 
-_s(ProfileView, "KILkZzzaGkrKwOCQbE5w4FAiWU8=");
+_s(ProfileView, "Iei9RGtZU29Y1RhBe1sbfh/MntA=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");
@@ -47432,8 +47431,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
 const DeleteUser = ({ storedToken , storedUser  })=>{
     const handleDeregister = ()=>{
-        const userWarning = confirm(`I respect your decision, but so you know, deleting your account is permanent.`);
-        userWarning === false ? alert("Phew! That was close!") : fetch(`https://movie-api-zhikiki.herokuapp.com/users/${storedUser.Username}`, {
+        const userWarning = confirm(`Are you sure? Deleting your account is permanent.`);
+        userWarning === false ? alert("Phew! That was close!") : fetch(`https://jackoc-myflix.onrender.com/users/${storedUser.Username}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${storedToken}`,
