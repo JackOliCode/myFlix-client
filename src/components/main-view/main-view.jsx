@@ -13,11 +13,16 @@ export const MainView = () => {
  
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser? storedUser : null);
+  const [user, setUser] = useState(storedUser? storedUser : null); // this sets user as the storedUser
   const [token, setToken] = useState(storedToken? storedToken : null);
 
   const [movies, setMovies] = useState([]);
  
+  const updateUser = user => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
 
    // useEffect hook allows React to perform side effects in component e.g fetching data
   useEffect(() => {
@@ -52,18 +57,18 @@ export const MainView = () => {
 return (
   <BrowserRouter>
   <NavigationBar 
-  user={user}
-  onLoggedOut={() => {
-    setUser(null);
-    setToken(null);
-    localStorage.clear(); 
+    user={user}
+    onLoggedOut={() => {
+      setUser(null);
+      setToken(null);
+      localStorage.clear(); 
   }} />
   <div>
     <Row className="justify-content-md-center">
       <Routes>
         <Route
-        path="/signup"
-        element={
+          path="/signup"
+          element={
           <>{user ? (
             <Navigate to="/" />
           ) : (
@@ -107,7 +112,7 @@ return (
             ) : (
               <Col md={5}>
                 <MovieView
-                  movies={movies} />
+                  movies={movies} user={user} token={token} updateUser={updateUser}/>
               </Col>
             )} 
           </>
@@ -149,12 +154,18 @@ return (
                     <ProfileView 
                     user={user}
                     movies={movies}
-                    token={token} />
+                    token={token} 
+                    onLoggedOut={() => {
+                      setUser(null);
+                      setToken(null);
+                      localStorage.clear();
+                  }} 
+                  updateUser={updateUser} />
                   </Col>
-                )}
+                ) }
               </>
             }
-          />
+            />
         </Routes>
       </Row>
       <Row>

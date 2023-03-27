@@ -10,7 +10,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
 
-  const updateUser = (username) => {
+  const updateUser = (user) => {
     fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -79,20 +79,8 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                     required
                     minLength='3'
                     title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
-                    placeholder='Enter your name'
                   />
-                </Form.Group>
-                <Form.Group controlId='forPassword' className='mt-2'>
-                  <Form.Label>Password:</Form.Label>
-                  <Form.Control
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
-                    title="Password may only contain letters, numbers and special characters: .,'-!?%&"
-                    placeholder='Create a password'
-                  />
+                
                 </Form.Group>
                 <Form.Group controlId='forEmail' className='mt-2'>
                   <Form.Label>Email:</Form.Label>
@@ -103,6 +91,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                     required
                     placeholder='Enter email'
                   />
+
                 </Form.Group>
                 <Form.Group controlId='forBirthday' className='mt-2'>
                   <Form.Label>Birthday:</Form.Label>
@@ -112,6 +101,20 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                     onChange={(e) => setBirthday(e.target.value)}
                   />
                 </Form.Group>
+
+                <Form.Group controlId='forPassword' className='mt-2'>
+                  <Form.Label>Password:</Form.Label>
+                  <Form.Control
+                    type='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
+                    title="Password may only contain letters, numbers and special characters: .,'-!?%&"
+                    placeholder='Please enter your password to update your details'
+                  />
+                  </Form.Group>
+
                 <Row>
                   <Col className='text-end'>
                     <Button variant='primary' type='submit' className='mt-3'>

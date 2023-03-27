@@ -5,18 +5,18 @@ import { Row, Col } from 'react-bootstrap';
 export const UserView = ({ user }) => {
     return (
         <Row>
-          <Col>
+          <div md={3}>
             <span>Username: </span>
             <span className='fw-bolder'>{user.Username}</span>
-          </Col>
-          <Col>
+          </div>
+          <div md={3}>
             <span>Email: </span>
             <span className='fw-bolder'>{user.Email}</span>
-          </Col>
-          <Col>
+          </div>
+          <div md={3}>
             <span>Birthday: </span>
             <span className='fw-bolder'>{user.Birthday}</span>
-          </Col>
+          </div>
           </Row>
     );
 };
