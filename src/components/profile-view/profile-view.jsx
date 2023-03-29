@@ -12,19 +12,36 @@ import { DeleteUser } from "./delete-user";
 export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'));
+    const [myuser, setMyUser] = useState('');
 
-    let favoriteMovies = movies.filter(movie => user.FaveMovies.includes(movie._id));
+    let favoriteMovies = movies.filter(movie => user.FaveMovies.includes(movie.id));
+
+    useEffect(()=>{
+        fetch(
+            `https://jackoc-myflix.onrender.com/users/${storedUser.Username}`,
+            {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+            }
+        )
+        .then((response) => response.json())
+        .then((data)=> setMyUser(data))
+    }, [])
 
     return (
         <>
-            <UserView user={storedUser} />
+        {console.log(myuser)}
+            <UserView user={myuser} />
             <UpdateView storedToken={storedToken} storedUser={storedUser} />
             <DeleteUser storedToken={storedToken} storedUser={storedUser} />
             <Col>
                 <h3>Fave Movies: </h3>
             </Col>
             {favoriteMovies.map(movie => (
-                <Col className="mb-4" key={movie.id}>
+                <Col className="mb-4" key={movie._id}>
                     <MovieCard movie={movie} />
                 </Col>
             ))}

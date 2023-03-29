@@ -63,7 +63,7 @@ return (
       setToken(null);
       localStorage.clear(); 
   }} />
-  <div>
+  
     <Row className="justify-content-md-center">
       <Routes>
         <Route
@@ -168,20 +168,6 @@ return (
             />
         </Routes>
       </Row>
-      <Row>
-      <Col>
-              <Button variant="primary"
-                  onClick={() => 
-                  {
-                    setUser(null); 
-                    setToken(null);
-                    localStorage.clear(); 
-                  }}>
-                  Logout
-              </Button>
-            </Col>
-      </Row>
-      </div>
     </BrowserRouter>
   );
 };
