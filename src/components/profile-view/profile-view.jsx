@@ -14,6 +14,7 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const [myuser, setMyUser] = useState('');
+    
 
     let favoriteMovies = movies.filter(movie => user.FaveMovies.includes(movie.id));
 
@@ -51,9 +52,9 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
             <Row>
                 <Col md={3}>
                     <h3>Fave Movies: </h3>
-                        {favoriteMovies.map(movie => (
+                    {favoriteMovies.map(movie => (
                         <div className="mb-4" key={movie._id}>
-                            <FaveCard movie={movie} />
+                            <FaveCard movie={movie} user={myuser} updateUser={updateUser} token={token} />
                         </div>
                     ))}
             </Col>
