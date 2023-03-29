@@ -5,6 +5,10 @@ import { Row, Col } from 'react-bootstrap';
 export const UserView = ({ user }) => {
     return (
         <Row>
+          <Col >
+            <img src='https://via.placeholder.com/125x125.png?text=You' />
+          </Col>
+          <Col>
           <div md={3}>
             <span>Username: </span>
             <span className='fw-bolder'>{user.Username}</span>
@@ -17,6 +21,7 @@ export const UserView = ({ user }) => {
             <span>Birthday: </span>
             <span className='fw-bolder'>{user.Birthday}</span>
           </div>
-          </Row>
+          </Col>
+        </Row>
     );
 };

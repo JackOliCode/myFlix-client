@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
-import { Button, Form, Row, Col, } from "react-bootstrap";
+import { Button, Form, Row, Col, Container, Card} from "react-bootstrap";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { UserView } from "./user-view";
 import { UpdateView } from "./update-user";
 import { UpdateView } from "./update-user";
 import { DeleteUser } from "./delete-user";
+import { FaveCard } from "./fave-card";
 
 export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
     const storedToken = localStorage.getItem('token');
@@ -32,21 +33,38 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
     }, [])
 
     return (
-        <>
-        {console.log(myuser)}
-            <UserView user={myuser} />
-            <UpdateView storedToken={storedToken} storedUser={storedUser} />
-            <DeleteUser storedToken={storedToken} storedUser={storedUser} />
-            <Col>
-                <h3>Fave Movies: </h3>
-            </Col>
-            {favoriteMovies.map(movie => (
-                <Col className="mb-4" key={movie._id}>
-                    <MovieCard movie={movie} />
+        <Container>
+            <Row>
+                <Col xs={12} sm={6}>
+                    <Card>
+                        <Card.Body>
+                            <UserView user={myuser} />
+                        </Card.Body>
+                    </Card>
+                    
                 </Col>
-            ))}
+                <Col xs={12} sm={8}>
+                    <UpdateView storedToken={storedToken} storedUser={storedUser} />
+                    <DeleteUser storedToken={storedToken} storedUser={storedUser} />
+                </Col>
+            </Row>
+            <Row>
+                <Col md={3}>
+                    <h3>Fave Movies: </h3>
+                        {favoriteMovies.map(movie => (
+                        <div className="mb-4" key={movie._id}>
+                            <FaveCard movie={movie} />
+                        </div>
+                    ))}
+            </Col>
+            </Row>
+
             
-        </>
+            
+            
+            
+            
+        </Container>
     );
     };
 
