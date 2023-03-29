@@ -74,7 +74,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
                     type='text'
-                    value={username}
+                    value="Enter new Username here"
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     minLength='3'
@@ -86,7 +86,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
                     type='email'
-                    value={email}
+                    value="Enter new Email address here"
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder='Enter email'

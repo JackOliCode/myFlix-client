@@ -21,4 +21,22 @@ $greenFont: Chartreuse;
   font-weight: bold;
 }
 
+.remove_from_faves_x {
+  // sets x in top right corner
+    cursor: pointer;
+    position: absolute;
+    color: white;
+    top: -10px;
+    right: -10px;
+    width: 60px;
+    height: 60px;
+// glass effect
+background: rgba( 255, 0, 0, 0.2 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 10.5px );
+-webkit-backdrop-filter: blur( 10.5px );
+border-radius: 100px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
 @import '~bootstrap/scss/bootstrap.scss';

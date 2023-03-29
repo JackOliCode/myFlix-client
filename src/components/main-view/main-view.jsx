@@ -132,7 +132,7 @@ return (
               {movies.map((movie) => (
                 <Col
                   key={movie.id}
-                  md={3}
+                  md={4}
                   className="mb-5"
                 >
                   <MovieCard movie={movie} />

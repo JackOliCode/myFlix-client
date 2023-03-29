@@ -8,11 +8,9 @@ import { Link } from "react-router-dom";
 
 export const FaveCard = ({ movie, user, token, updateUser}) => {
     const { movieId } = useParams();
-    const [isFavorite, setIsFavorite] = useState(user.FaveMovies.includes(movie.id));
+    const [isFavorite, setIsFavorite] = useState((movie.id)); //my thinking here is that movie is already storing the information from let favoriteMovies & favoriteMovies.map
 
-    useEffect(() => {
-        setIsFavorite(user.FaveMovies.includes(movie.id));
-    }, [movieId])
+console.log(isFavorite)
 
     const removeFavorite = () => {
         fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}/movies/${movieId}`, {
@@ -41,6 +39,7 @@ export const FaveCard = ({ movie, user, token, updateUser}) => {
 
     return (
       <Card variant="link" className="h-100">
+       <button className="remove_from_faves_x" onClick={removeFavorite}>X</button>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Card.Img variant="top" src={movie.ImagePath} />
         </Link>
@@ -48,7 +47,7 @@ export const FaveCard = ({ movie, user, token, updateUser}) => {
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Genre.Name}</Card.Text>
         </Card.Body>
-        <Button variant="danger" className="ms-2" onClick={removeFavorite}>Remove from favorites</Button>       
+               
       </Card>
     );
   };

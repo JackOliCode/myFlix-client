@@ -27312,7 +27312,7 @@ const MainView = ()=>{
                                     children: "The list is empty!"
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                            md: 3,
+                                            md: 4,
                                             className: "mb-5",
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                                 movie: movie
@@ -46994,6 +46994,7 @@ const ProfileView = ({ token , movies , onLoggedOut , updateUser , user  })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                         xs: 12,
                         sm: 6,
+                        md: 4,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userView.UserView), {
@@ -47052,7 +47053,7 @@ const ProfileView = ({ token , movies , onLoggedOut , updateUser , user  })=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                    md: 3,
+                    md: 4,
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                             children: "Fave Movies: "
@@ -47061,7 +47062,7 @@ const ProfileView = ({ token , movies , onLoggedOut , updateUser , user  })=>{
                             lineNumber: 54,
                             columnNumber: 21
                         }, undefined),
-                        favoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        favoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 className: "mb-4",
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _faveCard.FaveCard), {
                                     movie: movie,
@@ -47073,7 +47074,7 @@ const ProfileView = ({ token , movies , onLoggedOut , updateUser , user  })=>{
                                     lineNumber: 57,
                                     columnNumber: 29
                                 }, undefined)
-                            }, movie._id, false, {
+                            }, movie.id, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
                                 lineNumber: 56,
                                 columnNumber: 25
@@ -47095,93 +47096,7 @@ const ProfileView = ({ token , movies , onLoggedOut , updateUser , user  })=>{
         lineNumber: 37,
         columnNumber: 9
     }, undefined);
-}; /*
-export const ProfileView = ({movies, onUpdatedUserInfo}) => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedToken = localStorage.getItem("token");
-    const [user, setUser] = useState(storedUser? storedUser : null);
-    const [token, setToken] = useState(storedToken? storedToken : null);
-
- 
-        useEffect(() => {
-            if (!token) {
-              return;
-            }
-            fetch('https://jackoc-myflix.onrender.com/users/${user.Username}', {
-            method: "GET",
-              headers: { Authorization: `Bearer ${token}` } 
-            })
-            .then((response) => response.json())
-            .then((user) => {
-                console.log("books from api:", user);
-            });
-        }, []);
-
-    }
-
-
-  /*const favoriteMovieList = movies.filter((movies) => {
-        return user.FavoriteMovies.includes(movies._id);
-
-    }); 
-
-
-    const getUser = () => {
-
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Submitt successful');
-      }
-
-    const removeFav =(id) => {
-
-    }
-
-    const handleUpdate = (e) => {
-
-    };
-
-    useEffect(() => {
-
-    }, []);
-
-  return (
-<>
-    <p>User: {user.Username}</p>
-    <p>email: {user.Email}</p> 
-
-
-        <form className="" onSubmit={(e) => handleSubmit(e)}>
-            <h2>Want to change some info?</h2>
-            <label>Username:</label>
-            <input
-                type='text'
-                name='Username'
-                defaultValue={user.Username}
-                onChange={e => handleUpdate(e)} />
-
-            <label>Password</label>
-            <input 
-                type='password'
-                name='password'
-                defaultValue={user.Password}
-                onChange={e => handleUpdate(e)} />
-
-            <label>E-mail</label>
-            <input 
-            type="email"
-            name="email"
-            defaultValue={user.Email}
-            onChange={e => handleUpdate(e)} />
-            <button variant='primary' type='submit'>
-                Update
-            </button>
-        </form>
-</>
-
-*/ 
+};
 _s(ProfileView, "R8jh+3gH5Jbdoyx/rZOwuECeZnI=");
 _c = ProfileView;
 var _c;
@@ -47414,7 +47329,7 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                                 type: "text",
-                                                value: username,
+                                                value: "Enter new Username here",
                                                 onChange: (e)=>setUsername(e.target.value),
                                                 required: true,
                                                 minLength: "3",
@@ -47443,7 +47358,7 @@ const UpdateView = ({ storedToken , storedUser  })=>{
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                                 type: "email",
-                                                value: email,
+                                                value: "Enter new Email address here",
                                                 onChange: (e)=>setEmail(e.target.value),
                                                 required: true,
                                                 placeholder: "Enter email"
@@ -47665,12 +47580,8 @@ var _s = $RefreshSig$();
 const FaveCard = ({ movie , user , token , updateUser  })=>{
     _s();
     const { movieId  } = (0, _reactRouter.useParams)();
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FaveMovies.includes(movie.id));
-    (0, _react.useEffect)(()=>{
-        setIsFavorite(user.FaveMovies.includes(movie.id));
-    }, [
-        movieId
-    ]);
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(movie.id); //my thinking here is that movie is already storing the information from let favoriteMovies & favoriteMovies.map
+    console.log(isFavorite);
     const removeFavorite = ()=>{
         fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
@@ -47697,6 +47608,15 @@ const FaveCard = ({ movie , user , token , updateUser  })=>{
         variant: "link",
         className: "h-100",
         children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                className: "remove_from_faves_x",
+                onClick: removeFavorite,
+                children: "X"
+            }, void 0, false, {
+                fileName: "src/components/profile-view/fave-card.jsx",
+                lineNumber: 42,
+                columnNumber: 8
+            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                 to: `/movies/${encodeURIComponent(movie.id)}`,
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
@@ -47704,12 +47624,12 @@ const FaveCard = ({ movie , user , token , updateUser  })=>{
                     src: movie.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/profile-view/fave-card.jsx",
-                    lineNumber: 45,
+                    lineNumber: 44,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/fave-card.jsx",
-                lineNumber: 44,
+                lineNumber: 43,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -47719,40 +47639,30 @@ const FaveCard = ({ movie , user , token , updateUser  })=>{
                         children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/profile-view/fave-card.jsx",
-                        lineNumber: 48,
+                        lineNumber: 47,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: movie.Genre.Name
                     }, void 0, false, {
                         fileName: "src/components/profile-view/fave-card.jsx",
-                        lineNumber: 49,
+                        lineNumber: 48,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/fave-card.jsx",
-                lineNumber: 47,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                variant: "danger",
-                className: "ms-2",
-                onClick: removeFavorite,
-                children: "Remove from favorites"
-            }, void 0, false, {
-                fileName: "src/components/profile-view/fave-card.jsx",
-                lineNumber: 51,
+                lineNumber: 46,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/fave-card.jsx",
-        lineNumber: 43,
+        lineNumber: 41,
         columnNumber: 7
     }, undefined);
 };
-_s(FaveCard, "Li0hTVm2Y8ooVK+r399qqQNHkEc=", false, function() {
+_s(FaveCard, "SlDDa9S8BBTiLoqNNIe7800i9A4=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
