@@ -2,6 +2,14 @@
   background-image: linear-gradient(80deg, #ea9df7 0%, #f9affa 5%, #dfc4eb 15%, #a1cde0 19%, #00d4ff 23%, #81e9f4ec 30%, #fcbbef 41%, #57c9ed 50%, #e1edf1 61%, #ea9df7 73%, #999cff 84%, #00d4ff 94%);
 }
 
+* form {
+  text-align: center;
+  border-radius: 10px;
+  margin: 15% auto auto;
+  padding: 1.5%;
+  display: block;
+}
+
 .bg_gradient {
   background-image: linear-gradient(80deg, #ea9df7 0%, #f9affa 5%, #dfc4eb 15%, #a1cde0 19%, #00d4ff 23%, #81e9f4ec 30%, #fcbbef 41%, #57c9ed 50%, #e1edf1 61%, #ea9df7 73%, #999cff 84%, #00d4ff 94%);
 }

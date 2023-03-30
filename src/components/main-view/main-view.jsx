@@ -73,8 +73,7 @@ return (
             <Navigate to="/" />
           ) : (
             <Col md={5}>
-              <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Register</div>
-              <SignupView />
+                <SignupView />
             </Col>
           )}
             </>
@@ -89,7 +88,6 @@ return (
               <Navigate to="/" />
             ) : (
               <Col md={5}>
-                <div className="mb-2 greenFont" style={{ textDecoration: "underline"}} >Log-in</div>
                 <LoginView onLoggedIn={(user, token) => {
                   setUser(user)
                   setToken(token)

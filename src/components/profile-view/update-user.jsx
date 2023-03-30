@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form, Row, Col, CardGroup, Card } from 'react-bootstrap';
 
-export const UpdateView = ({ storedToken, storedUser }) => {
+export const UpdateView = ({ storedToken, user }) => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [user, setUser] = useState(storedUser ? storedUser : null);
 
   const [username, setUsername] = useState(user.Username);
   const [password, setPassword] = useState();
@@ -51,8 +50,9 @@ export const UpdateView = ({ storedToken, storedUser }) => {
     )
       .then((response) => {
         if (response.ok) {
+          console.log(token)
           alert('Changes saved');
-          updateUser(username);
+          updateUser(user);
         } else {
           alert('Oops, somethings gone wrong');
         }
@@ -63,6 +63,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
   };
 
   return (
+    
     <Row className="mt-2">
       <Col >
         <CardGroup>
@@ -70,7 +71,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
             <Card.Body>
               <div className='text-start h2 mb-0'>Update user info</div>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId='forUsername' className='mt-2'>
+                <Form.Group controlId='formUsername' className='mt-2'>
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
                     type='text'
@@ -80,9 +81,9 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                     minLength='3'
                     title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
                   />
-                
                 </Form.Group>
-                <Form.Group controlId='forEmail' className='mt-2'>
+
+                <Form.Group controlId='formEmail' className='mt-2'>
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
                     type='email'

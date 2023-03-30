@@ -41,14 +41,14 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
                 <Col xs={12} sm={6} md={5} style={{paddingTop:"100px"}}> 
                     <Card className="customCard card_body">
                         <Card.Body>
-                            <UserView user={myuser} />
+                            <UserView user={myuser} updateUser={updateUser}/>
                         </Card.Body>
                     </Card>
                     
                 </Col>
                 <Col md={1}></Col>
                 <Col xs={12} sm={8} md={6} >
-                    <UpdateView storedToken={storedToken} storedUser={storedUser} />
+                    <UpdateView storedToken={storedToken} user={myuser} updateUser={updateUser}/>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
