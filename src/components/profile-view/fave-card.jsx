@@ -6,14 +6,15 @@ import { useParams } from "react-router";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const FaveCard = ({ movie, user, token, updateUser}) => {
+export const FaveCard = ({ movie, user, storedToken, updateUser}) => {
     const { movieId } = useParams();
     const [isFavorite, setIsFavorite] = useState((movie.id)); //my thinking here is that movie is already storing the information from let favoriteMovies & favoriteMovies.map
+    const [token, setToken] = useState(storedToken ? storedToken : null);
 
-console.log(isFavorite)
+    console.log(isFavorite)
 
     const removeFavorite = () => {
-        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}/movies/${movieId}`, {
+        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}/movies/${movie.id}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })

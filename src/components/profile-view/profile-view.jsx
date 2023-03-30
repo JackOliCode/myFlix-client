@@ -56,7 +56,7 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
                     <h3>Fave Movies: </h3>
                     {favoriteMovies.map(movie => (
                         <Col className="mb-4" key={movie.id}>
-                            <FaveCard movie={movie} user={myuser} updateUser={updateUser} token={token} />
+                            <FaveCard movie={movie} user={myuser} updateUser={updateUser} storedToken={storedToken} />
                         </Col>
                     ))}
                 </Col>

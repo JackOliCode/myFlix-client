@@ -47077,7 +47077,7 @@ const ProfileView = ({ token , movies , onLoggedOut , updateUser , user  })=>{
                                     movie: movie,
                                     user: myuser,
                                     updateUser: updateUser,
-                                    token: token
+                                    storedToken: storedToken
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
                                     lineNumber: 59,
@@ -47610,13 +47610,14 @@ var _reactRouter = require("react-router");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const FaveCard = ({ movie , user , token , updateUser  })=>{
+const FaveCard = ({ movie , user , storedToken , updateUser  })=>{
     _s();
     const { movieId  } = (0, _reactRouter.useParams)();
     const [isFavorite, setIsFavorite] = (0, _react.useState)(movie.id); //my thinking here is that movie is already storing the information from let favoriteMovies & favoriteMovies.map
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     console.log(isFavorite);
     const removeFavorite = ()=>{
-        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}/movies/${movieId}`, {
+        fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}/movies/${movie.id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -47647,7 +47648,7 @@ const FaveCard = ({ movie , user , token , updateUser  })=>{
                 children: "X"
             }, void 0, false, {
                 fileName: "src/components/profile-view/fave-card.jsx",
-                lineNumber: 42,
+                lineNumber: 43,
                 columnNumber: 8
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -47657,12 +47658,12 @@ const FaveCard = ({ movie , user , token , updateUser  })=>{
                     src: movie.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/profile-view/fave-card.jsx",
-                    lineNumber: 44,
+                    lineNumber: 45,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/fave-card.jsx",
-                lineNumber: 43,
+                lineNumber: 44,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -47672,30 +47673,30 @@ const FaveCard = ({ movie , user , token , updateUser  })=>{
                         children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/profile-view/fave-card.jsx",
-                        lineNumber: 47,
+                        lineNumber: 48,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: movie.Genre.Name
                     }, void 0, false, {
                         fileName: "src/components/profile-view/fave-card.jsx",
-                        lineNumber: 48,
+                        lineNumber: 49,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/fave-card.jsx",
-                lineNumber: 46,
+                lineNumber: 47,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/fave-card.jsx",
-        lineNumber: 41,
+        lineNumber: 42,
         columnNumber: 7
     }, undefined);
 };
-_s(FaveCard, "SlDDa9S8BBTiLoqNNIe7800i9A4=", false, function() {
+_s(FaveCard, "aLv93rWrFJ2bu2uwcQdLPKKXcTY=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
