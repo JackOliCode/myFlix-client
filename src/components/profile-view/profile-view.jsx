@@ -36,17 +36,18 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
     return (
         
         <Container style={{border: "1px solid green"}}>
-            console.log(myuser)
-            <Row style={{border: "1px solid red"}}>
-                <Col xs={12} sm={6} md={4}> 
-                    <Card>
+            
+            <Row style={{border: "1px solid red"}} >
+                <Col xs={12} sm={6} md={5} style={{paddingTop:"100px"}}> 
+                    <Card className="customCard card_body">
                         <Card.Body>
                             <UserView user={myuser} />
                         </Card.Body>
                     </Card>
                     
                 </Col>
-                <Col xs={12} sm={8} md={5}>
+                <Col md={1}></Col>
+                <Col xs={12} sm={8} md={6} >
                     <UpdateView storedToken={storedToken} storedUser={storedUser} />
                 </Col>
             </Row>

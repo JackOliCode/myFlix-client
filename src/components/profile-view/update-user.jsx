@@ -66,7 +66,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
     <Row className="mt-2">
       <Col >
         <CardGroup>
-          <Card className='border-0'>
+          <Card className='customCard card_body"'>
             <Card.Body>
               <div className='text-start h2 mb-0'>Update user info</div>
               <Form onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
                     type='text'
-                    value="Enter new Username here"
+                    value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     minLength='3'
@@ -86,7 +86,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
                     type='email'
-                    value="Enter new Email address here"
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder='Enter email'
