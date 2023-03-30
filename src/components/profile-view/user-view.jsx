@@ -1,10 +1,11 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, CardGroup } from 'react-bootstrap';
 
 
 export const UserView = ({ user }) => {
     return (
         <Row>
+          <CardGroup></CardGroup>
           <Col >
             <img src='https://via.placeholder.com/125x125.png?text=You' />
           </Col>

@@ -34,8 +34,10 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
     }, [])
 
     return (
-        <Container>
-            <Row>
+        
+        <Container style={{border: "1px solid green"}}>
+            console.log(myuser)
+            <Row style={{border: "1px solid red"}}>
                 <Col xs={12} sm={6} md={4}> 
                     <Card>
                         <Card.Body>
@@ -44,12 +46,11 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
                     </Card>
                     
                 </Col>
-                <Col xs={12} sm={8}>
+                <Col xs={12} sm={8} md={5}>
                     <UpdateView storedToken={storedToken} storedUser={storedUser} />
-                    <DeleteUser storedToken={storedToken} storedUser={storedUser} />
                 </Col>
             </Row>
-            <Row>
+            <Row className="justify-content-md-center">
                 <Col md={4}>
                     <h3>Fave Movies: </h3>
                     {favoriteMovies.map(movie => (
@@ -58,10 +59,13 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
                         </Col>
                     ))}
                 </Col>
+                
             </Row>
-
-            
-            
+            <Row>
+                <Col>
+                    <DeleteUser storedToken={storedToken} storedUser={storedUser} />
+                </Col>   
+            </Row>
             
             
             

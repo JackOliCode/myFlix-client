@@ -64,7 +64,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
 
   return (
     <Row className="mt-2">
-      <Col md={5}>
+      <Col >
         <CardGroup>
           <Card className='border-0'>
             <Card.Body>
@@ -111,7 +111,7 @@ export const UpdateView = ({ storedToken, storedUser }) => {
                     required
                     pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
                     title="Password may only contain letters, numbers and special characters: .,'-!?%&"
-                    placeholder='Please enter your password to update your details'
+                    placeholder='Please enter your password to update'
                   />
                   </Form.Group>
 
