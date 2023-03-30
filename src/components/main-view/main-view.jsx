@@ -64,7 +64,7 @@ return (
       localStorage.clear(); 
   }} />
   
-    <Row className="justify-content-md-center">
+    <Row className="justify-content-md-center mt-5">
       <Routes>
         <Route
           path="/signup"
@@ -132,6 +132,7 @@ return (
                   key={movie.id}
                   md={4}
                   className="mb-5"
+                  
                 >
                   <MovieCard movie={movie} />
                 </Col>
@@ -153,7 +154,7 @@ return (
                     user={user}
                     movies={movies}
                     token={token} 
-                    onLoggedOut={() => {
+                    onLoggedOut={() => {s
                       setUser(null);
                       setToken(null);
                       localStorage.clear();

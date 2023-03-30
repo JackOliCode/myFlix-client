@@ -39,7 +39,7 @@ export const FaveCard = ({ movie, user, storedToken, updateUser}) => {
     }
 
     return (
-      <Card variant="link" className="h-100">
+      <Card variant="link" className="customCard h-100 movie-card-ani">
        <button className="remove_from_faves_x" onClick={removeFavorite}>X</button>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Card.Img variant="top" src={movie.ImagePath} />

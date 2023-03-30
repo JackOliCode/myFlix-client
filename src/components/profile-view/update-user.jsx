@@ -67,9 +67,9 @@ export const UpdateView = ({ storedToken, user }) => {
     <Row className="mt-2">
       <Col >
         <CardGroup>
-          <Card className='customCard card_body"'>
+          <Card className="customCard card_body" style={{textAlign: "center", marginBottom: 50, width: '30px'}}>
             <Card.Body>
-              <div className='text-start h2 mb-0'>Update user info</div>
+              <div className='h2'>Update user info</div>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId='formUsername' className='mt-2'>
                   <Form.Label>Username:</Form.Label>

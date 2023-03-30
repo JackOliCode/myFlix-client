@@ -37,8 +37,8 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
         
         <Container style={{border: "1px solid green"}}>
             
-            <Row style={{border: "1px solid red"}} >
-                <Col xs={12} sm={6} md={5} style={{paddingTop:"100px"}}> 
+            <Row style={{alignItems: "center"}} >
+                <Col xs={12} sm={6} md={5}> 
                     <Card className="customCard card_body">
                         <Card.Body>
                             <UserView user={myuser} updateUser={updateUser}/>
@@ -51,19 +51,16 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
                     <UpdateView storedToken={storedToken} user={myuser} updateUser={updateUser}/>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center">
-                <Col md={4}>
-                    <h3>Fave Movies: </h3>
+            <Row>
+                    <h3 className="mb-5" style={{textAlign: "center"}}>Your Fave Movies: </h3>
                     {favoriteMovies.map(movie => (
-                        <Col className="mb-4" key={movie.id}>
+                        <Col md={4} className="mb-5" key={movie.id}>
                             <FaveCard movie={movie} user={myuser} updateUser={updateUser} storedToken={storedToken} />
                         </Col>
-                    ))}
-                </Col>
-                
+                    ))}               
             </Row>
-            <Row>
-                <Col>
+            <Row >
+                <Col >
                     <DeleteUser storedToken={storedToken} storedUser={storedUser} />
                 </Col>   
             </Row>

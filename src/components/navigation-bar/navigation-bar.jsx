@@ -1,11 +1,12 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import "./navbar.scss"
 export const NavigationBar = ({ user, onLoggedOut }) => {
     
     return (
-    <Navbar bg="light" expand="lg">
-      <Container>
+      <Container className="nav_bg">
+    <Navbar expand="lg" className="justify-content-center">
+      
         <Navbar.Brand as={Link} to="/">
             MyFlix        
         </Navbar.Brand>
@@ -35,7 +36,8 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             )}
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      
     </Navbar>
+    </Container>
   );
 };
