@@ -7,7 +7,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import { Col, Row, Button } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-
+import { FaveMovieView } from "../movie-view/favemovie-view";
 
 export const MainView = () => {
  
@@ -106,7 +106,7 @@ return (
           {!user ? (
             <Navigate to="/login" replace />
             ) : movies.length === 0 ? (
-              <div className="greenFont">The list is empty!</div>
+              <div >The list is empty!</div>
             ) : (
               <Col md={5}>
                 <MovieView
@@ -165,6 +165,23 @@ return (
               </>
             }
             />
+            <Route
+        path="/profile/movies/:movieId"
+        element={
+          <>
+          {!user ? (
+            <Navigate to="/login" replace />
+            ) : movies.length === 0 ? (
+              <div >The list is empty!</div>
+            ) : (
+              <Col md={5}>
+                <FaveMovieView
+                  movies={movies} user={user} token={token} updateUser={updateUser} />
+              </Col>
+            )} 
+          </>
+        }
+      />
         </Routes>
       </Row>
     </BrowserRouter>
