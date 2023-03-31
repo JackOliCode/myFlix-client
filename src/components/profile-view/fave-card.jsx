@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-
+import { XCircle } from "react-bootstrap-icons";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -40,7 +40,7 @@ export const FaveCard = ({ movie, user, storedToken, updateUser}) => {
 
     return (
       <Card variant="link" className="customCard h-100 movie-card-ani">
-       <button className="remove_from_faves_x" onClick={removeFavorite}>X</button>
+       <button className="remove_from_faves_fc" onClick={removeFavorite}><XCircle size={45} /></button>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Card.Img variant="top" src={movie.ImagePath} />
         </Link>

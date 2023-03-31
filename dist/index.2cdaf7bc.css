@@ -46,7 +46,7 @@
   font-weight: bold;
 }
 
-.remove_from_faves_x {
+.remove_from_faves_fc {
   cursor: pointer;
   color: #fff;
   width: 60px;
@@ -63,6 +63,50 @@
   box-shadow: 0 8px 32px #1f26875e;
 }
 
+.remove_from_faves_mc {
+  cursor: pointer;
+  color: #fff;
+  width: 90px;
+  height: 90px;
+  -webkit-backdrop-filter: blur(10.5px);
+  backdrop-filter: blur(10.5px);
+  -webkit-backdrop-filter: blur(10.5px);
+  background: #f003;
+  border: 1px solid #ffffff2e;
+  border-radius: 100px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  box-shadow: 0 8px 32px #1f26875e;
+}
+
+.remove_from_faves_mc:hover, .remove_from_faves_fc:hover {
+  background: #ff0000a1;
+  transition: all .4s ease-in-out;
+}
+
+.add_to_faves {
+  cursor: pointer;
+  color: #fff;
+  width: 90px;
+  height: 90px;
+  -webkit-backdrop-filter: blur(10.5px);
+  backdrop-filter: blur(10.5px);
+  -webkit-backdrop-filter: blur(10.5px);
+  background: #80ff00ab;
+  border: 1px solid #ffffff2e;
+  border-radius: 100px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  box-shadow: 0 8px 32px #1f26875e;
+}
+
+.add_to_faves:hover {
+  background: #7fff00;
+  transition: all .4s ease-in-out;
+}
+
 .movie-card-ani {
   z-index: 9;
   transition: all .4s ease-in-out;
@@ -71,6 +115,15 @@
 .movie-card-ani:hover, .movie-card-ani:active {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.heart {
+  color: #fff;
+}
+
+.heart:hover {
+  color: red;
+  transition: all .4s ease-in-out;
 }
 
 :root {

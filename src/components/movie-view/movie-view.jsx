@@ -3,6 +3,7 @@ import { Card, Col, Row, Button} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Heart, Heartbreak, XCircle } from "react-bootstrap-icons";
 
 export const MovieView = ({ movies, user, token, updateUser }) => {
   const { movieId } = useParams();
@@ -68,7 +69,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 
 
   return (
-    <Card>
+    <Card className="customCard card_body">
       <Link to={`/`}>
         <Card.Img src={movie.ImagePath} />
       </Link>
@@ -91,8 +92,8 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         <Button className="w-100">Back</Button>
         </Link>
         {isFavorite ? 
-           <Button variant="danger" className="ms-2" onClick={removeFavorite}>Remove from favorites</Button>
-             : <Button variant="primary" className="ms-2" onClick={addFavorite}>Add to favorites</Button>
+           <button className="remove_from_faves_mc" onClick={removeFavorite}><XCircle size={45} /></button>
+             : <button className="add_to_faves" onClick={addFavorite}><Heart size={45}  /></button>
         }      
     </Card>
   );

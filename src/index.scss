@@ -31,7 +31,7 @@ $body-bg: rgb(172, 202, 233);
   font-weight: bold;
 }
 
-.remove_from_faves_x {
+.remove_from_faves_fc {
   // sets x in top right corner
     cursor: pointer;
     position: absolute;
@@ -49,6 +49,57 @@ $body-bg: rgb(172, 202, 233);
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
+.remove_from_faves_mc {
+  // sets x in top right corner
+    cursor: pointer;
+    position: absolute;
+    color: white;
+    top: -10px;
+    right: -10px;
+    width: 90px;
+    height: 90px;
+// glass effect
+    background: rgba( 255, 0, 0, 0.2 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10.5px );
+    -webkit-backdrop-filter: blur( 10.5px );
+    border-radius: 100px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.remove_from_faves_mc:hover {
+    background: rgba(255, 0, 0, 0.63);
+    transition: .4s ease-in-out;
+}
+
+.remove_from_faves_fc:hover {
+  background: rgba(255, 0, 0, 0.63);
+  transition: .4s ease-in-out;
+}
+
+.add_to_faves {
+  // sets <3 in top left corner
+    cursor: pointer;
+    position: absolute;
+    color: white;
+    top: -10px;
+    left: -10px;
+    width: 90px;
+    height: 90px;
+// glass effect
+    background: #80ff00ab;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10.5px );
+    -webkit-backdrop-filter: blur( 10.5px );
+    border-radius: 100px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.add_to_faves:hover {
+  background: chartreuse;
+  transition: .4s ease-in-out;
+}
+
 .movie-card-ani {
   z-index: 9;
   &:hover,
@@ -59,6 +110,12 @@ $body-bg: rgb(172, 202, 233);
   transition: .4s ease-in-out; 
 }
 
-
+.heart {
+  color: white;
+}
+.heart:hover {
+  color: red;
+  transition: .4s ease-in-out;
+}
 
 @import '~bootstrap/scss/bootstrap.scss';
