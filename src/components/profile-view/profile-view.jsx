@@ -35,9 +35,9 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
 
     return (
         
-        <Container style={{border: "1px solid green"}}>
+        <Container>
             
-            <Row style={{alignItems: "center"}} >
+            <Row style={{alignItems: "baseline"}} >
                 <Col xs={12} sm={6} md={5}> 
                     <Card className="customCard card_body">
                         <Card.Body>
