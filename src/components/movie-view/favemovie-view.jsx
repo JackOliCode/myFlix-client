@@ -70,7 +70,7 @@ export const FaveMovieView = ({ movies, user, token, updateUser }) => {
 
   return (
     <Card className="customCard card_body">
-      <Link to={`/`}>
+      <Link to={`/profile`}>
         <Card.Img src={movie.ImagePath} />
       </Link>
         <Card.Body>
