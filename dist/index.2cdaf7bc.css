@@ -121,15 +121,6 @@ h5 {
   transform: scale(1.1);
 }
 
-.heart {
-  color: #fff;
-}
-
-.heart:hover {
-  color: red;
-  transition: all .4s ease-in-out;
-}
-
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
