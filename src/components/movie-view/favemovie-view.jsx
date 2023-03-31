@@ -99,36 +99,7 @@ export const FaveMovieView = ({ movies, user, token, updateUser }) => {
   );
 };
 
-//below is code for non-card version
-/*
-    return (
-      <Row className="justify-content-md-center">
-        <Col md={6} className="mb-1">
-        <img src={movie.ImagePath} style={{ width: "100%" }} />
-      </Col>
-      <div className="mb-1">
-        <span>Title: </span>
-        <span>{movie.Title}</span>
-      </div>
-      <div className="mb-1">
-        <span>Director: </span>
-        <span>{movie.Director.Name}</span>
-      </div>
-      <div className="mb-1">
-        <span>Genre: </span>
-        <span>{movie.Genre.Name}</span>
-      </div>
-      <div className="mb-1">
-        <span>Description: </span>
-        <span>{movie.Description}</span>
-      </div>
-      <Link to={`/`}>
-        <button onClick={onBackClick}>Back</button>
-      </Link>
-      </Row>
-    );
-  }; 
- */
+
 
   //PropTypes for the MovieView
 
