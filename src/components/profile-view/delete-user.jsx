@@ -31,8 +31,8 @@ export const DeleteUser = ({ storedToken, storedUser }) => {
   };
 
   return (
-    <Col >
-      <div>
+    <Col style={{textAlign:"center"}}>
+      
         <Button
           onClick={() => handleDeregister(storedUser._id)}
           className='button-delete'
@@ -40,7 +40,7 @@ export const DeleteUser = ({ storedToken, storedUser }) => {
         >
           Delete Account
         </Button>
-      </div>
+      
     </Col>
   );
 };
