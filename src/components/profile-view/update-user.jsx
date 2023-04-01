@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form, Row, Col, CardGroup, Card } from 'react-bootstrap';
 
-export const UpdateView = ({ storedToken, user }) => {
+export const UpdateView = ({ storedToken, user, setUser }) => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const [username, setUsername] = useState(user.Username);
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
 
@@ -52,9 +52,10 @@ export const UpdateView = ({ storedToken, user }) => {
         if (response.ok) {
           console.log(token)
           alert('Changes saved');
+          setToken(storedToken);
           updateUser(user);
         } else {
-          alert('Oops, somethings gone wrong');
+          alert('Oops, something\'s gone wrong');
         }
       })
       .catch((error) => {
