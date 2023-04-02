@@ -96,36 +96,8 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear(); 
         }} />
-
-      <Row className="justify-content-md-center mt-5">
-        <Col md={6}>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-        <input
-          type="text"
-          placeholder="Search movies"
-          value={searchTerm}
-          onChange={handleSearch}
-          ref={searchRef}
-          className="search_bar"
-        />
-
-        <Button variant="primary" onClick={searchMovies}>
-          Search
-        </Button>
-      </div>
-          {searchTerm.trim() === "" ? (
-        <></>
-      ) : filteredMovies.length === 0 ? (
-        <div>No movies found</div>
-      ) : (
-        filteredMovies.map((movie) => (
-          <Col key={movie.id} md={4} className="mb-5">
-            <MovieCard movie={movie} />
-          </Col>
-        ))
-      )}
-        </Col>
-      </Row>
+        
+  
   
       <Row className="justify-content-md-center mt-5">
         <Routes>
@@ -181,31 +153,64 @@ export const MainView = () => {
         }
       />
 
-      <Route
-        path="/"
-        element={
-          <>
-          {!user ? (
-            <Navigate to="/login" replace />
-            ) : movies.length === 0 ? (
-              <div className="greenFont">The list is empty!</div>
-            ) : (
-              <>
-              {movies.map((movie) => (
-                <Col
-                  key={movie.id}
-                  md={4}
-                  className="mb-5"
-                  
-                >
-                  <MovieCard movie={movie} />
-                </Col>
-              ))}
-              </>
-            )}
-            </>
-        }
-        />
+<Route
+  path="/"
+  element={
+    <>
+      {!user ? (
+        <Navigate to="/login" replace />
+      ) : movies.length === 0 ? (
+        <div className="greenFont">The list is empty!</div>
+      ) : (
+        <>
+          <Row className="justify-content-md-center mt-5" style={{marginBottom:'30px'}}>
+            <Col md={6}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <input
+                  type="text"
+                  placeholder="Search movies"
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  ref={searchRef}
+                  className="search_bar"
+                />
+        
+                <Button variant="primary" onClick={searchMovies}>
+                  Search
+                </Button>
+              </div>
+              {searchTerm.trim() === "" ? (
+                <></>
+              ) : filteredMovies.length === 0 ? (
+                <div>No movies found</div>
+              ) : (
+                <Row style={{marginTop:'30px'}}>
+                  {filteredMovies.map((movie) => (
+                    <Col key={movie.id} md={4} className="mb-5">
+                      <MovieCard movie={movie} />
+                    </Col>
+                  ))}
+                </Row>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            {movies.map((movie) => (
+              <Col
+                key={movie.id}
+                md={4}
+                className="mb-5"
+              >
+                <MovieCard movie={movie} />
+              </Col>
+            ))}
+          </Row>
+        </>
+      )}
+    </>
+  }
+/>
+
         <Route
             path="/profile"
             element={
