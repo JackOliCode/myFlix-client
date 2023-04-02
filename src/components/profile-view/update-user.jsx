@@ -14,7 +14,12 @@ export const UpdateView = ({ storedToken, user, handleUpdateUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   
-    const updatedUser = { Username: username, Email: email, Password: password, Birthday: birthday };
+    const updatedUser = { 
+      Username: username, 
+      Email: email, 
+      Password: password, 
+      Birthday: birthday 
+    };
   
     fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`, {
       method: "PUT",
@@ -71,4 +76,3 @@ export const UpdateView = ({ storedToken, user, handleUpdateUser }) => {
     </Form>
   );
 };
-

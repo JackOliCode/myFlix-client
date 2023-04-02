@@ -6,7 +6,7 @@ import { XCircle } from "react-bootstrap-icons";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const FaveCard = ({ movie, user, storedToken, updateUser}) => {
+export const FaveCard = ({ movie, myuser, storedToken, updateUser, user}) => {
     const { movieId } = useParams();
     const [isFavorite, setIsFavorite] = useState((movie.id)); //my thinking here is that movie is already storing the information from let favoriteMovies & favoriteMovies.map
     const [token, setToken] = useState(storedToken ? storedToken : null);
