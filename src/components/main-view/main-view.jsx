@@ -5,10 +5,9 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { Col, Row, Button } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate, useLocation  } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FaveMovieView } from "../movie-view/favemovie-view";
-import { SearchBar } from '../search-bar/search-bar.jsx';
 
 export const MainView = () => {
  
@@ -36,7 +35,6 @@ export const MainView = () => {
       setFilteredMovies(filteredMovies);
     }
   };
-
 
   const handleSearch = (event) => {
     const value = event.target.value;
@@ -101,20 +99,31 @@ export const MainView = () => {
 
       <Row className="justify-content-md-center mt-5">
         <Col md={6}>
-          {location.pathname === '/' && (
-            <div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <SearchBar handleSearch={handleSearch} searchMovies={searchMovies} />
-              </div>
-              <Row>
-                {filteredMovies.map((movie) => (
-                  <Col key={movie.id} md={4} className="mb-5">
-                    <MovieCard movie={movie} />
-                  </Col>
-                ))}
-              </Row>
-            </div>
-          )}
+        <div style={{ display: "flex", justifyContent: "center" }}>
+        <input
+          type="text"
+          placeholder="Search movies"
+          value={searchTerm}
+          onChange={handleSearch}
+          ref={searchRef}
+          className="search_bar"
+        />
+
+        <Button variant="primary" onClick={searchMovies}>
+          Search
+        </Button>
+      </div>
+          {searchTerm.trim() === "" ? (
+        <></>
+      ) : filteredMovies.length === 0 ? (
+        <div>No movies found</div>
+      ) : (
+        filteredMovies.map((movie) => (
+          <Col key={movie.id} md={4} className="mb-5">
+            <MovieCard movie={movie} />
+          </Col>
+        ))
+      )}
         </Col>
       </Row>
   

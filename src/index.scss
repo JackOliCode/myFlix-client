@@ -110,5 +110,20 @@ $body-bg: rgb(172, 202, 233);
   transition: .4s ease-in-out; 
 }
 
+.search_bar {
+    width: 80%;
+    color: #212529;
+    appearance: none;
+    background-color: #accae9;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    display: block;
+}
 
 @import '~bootstrap/scss/bootstrap.scss';
