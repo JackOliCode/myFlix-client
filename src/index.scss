@@ -1,14 +1,19 @@
 $primary: Chartreuse;
 $body-bg: rgb(172, 202, 233);
 
-.bg_gradient { 
+body {
+  min-height: 100vh;
+  margin: 0;}
+
+.bg_gradient {
     background-image: linear-gradient(80deg, rgba(234,157,247,1) 0%, 
     rgba(249,175,250,1) 5%, rgba(223,196,235,1) 15%, 
     rgba(161,205,224,1) 19%, rgba(0,212,255,1) 23%, 
     rgba(129,233,244,0.9248074229691877) 30%, 
     rgba(252,187,239,1) 41%, rgba(87,201,237,1) 50%, 
     rgba(225,237,241,1) 61%, rgba(234,157,247,1) 73%,
-    rgba(153,156,255,1) 84%, rgba(0,212,255,1) 94%) 
+    rgba(153,156,255,1) 84%, rgba(0,212,255,1) 94%);
+    
   }
 
   .customCard  {
@@ -110,22 +115,13 @@ $body-bg: rgb(172, 202, 233);
   transition: .4s ease-in-out; 
 }
 
-.search_bar {
-    width: 80%;
-    color: #212529;
-    appearance: none;
-    background-color: #accae9;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.375rem;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    display: block;
+.del_button {
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: sticky;
+  top: 100%;
 }
-
-
 
 @import '~bootstrap/scss/bootstrap.scss';
