@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/JackOliCode/myFlix-client#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "bootstrap": "^5.2.3",
     "parcel": "^2.8.3",
     "prop-types": "^15.8.1",
