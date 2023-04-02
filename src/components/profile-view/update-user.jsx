@@ -17,8 +17,8 @@ export const UpdateView = ({ storedToken, user, setUser }) => {
       .then((updatedUser) => {
         if (updatedUser) {
           console.log(updatedUser); 
-          setUser(updatedUser);
-          localStorage.setItem('user', JSON.stringify(updatedUser));
+          user(updatedUser.user);
+          localStorage.setItem('user', JSON.stringify(updatedUser.user));
           window.location.reload();
         }
       })

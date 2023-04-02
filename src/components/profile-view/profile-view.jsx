@@ -10,11 +10,11 @@ import { UpdateView } from "./update-user";
 import { DeleteUser } from "./delete-user";
 import { FaveCard } from "./fave-card";
 
-export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
+export const ProfileView = ({token, movies, onLoggedOut, updateUser}) => {
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const [myuser, setMyUser] = useState('');
-    
+    const [user, setUser] = useState(storedUser);
 
     let favoriteMovies = movies.filter(movie => user.FaveMovies.includes(movie.id));
 
@@ -48,7 +48,7 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser, user}) => {
                 </Col>
                 <Col md={1}></Col>
                 <Col xs={12} sm={8} md={6} >
-                    <UpdateView storedToken={storedToken} user={myuser} updateUser={updateUser}/>
+                    <UpdateView storedToken={storedToken} user={myuser} updateUser={updateUser} setUser={setUser} />
                 </Col>
             </Row>
             <Row>

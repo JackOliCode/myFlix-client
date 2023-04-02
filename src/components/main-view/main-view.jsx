@@ -154,7 +154,7 @@ return (
                     user={user}
                     movies={movies}
                     token={token} 
-                    onLoggedOut={() => {s
+                    onLoggedOut={() => {
                       setUser(null);
                       setToken(null);
                       localStorage.clear();
