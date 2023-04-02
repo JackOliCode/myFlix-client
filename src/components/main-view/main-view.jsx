@@ -163,7 +163,7 @@ export const MainView = () => {
         <div className="greenFont">The list is empty!</div>
       ) : (
         <>
-          <Row className="justify-content-md-center mt-5" style={{marginBottom:'30px'}}>
+          <Row className="justify-content-md-center mt-3" style={{marginBottom:'30px'}}>
             <Col md={6}>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <input
@@ -194,7 +194,7 @@ export const MainView = () => {
               )}
             </Col>
           </Row>
-          <Row>
+          <Row className="mt-4">
             {movies.map((movie) => (
               <Col
                 key={movie.id}
