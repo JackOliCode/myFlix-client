@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { Col, Row, Button } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation  } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FaveMovieView } from "../movie-view/favemovie-view";
+import { SearchBar } from '../search-bar/search-bar.jsx';
 
 export const MainView = () => {
  
@@ -15,7 +16,7 @@ export const MainView = () => {
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
-
+  const searchRef = useRef(null);
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,33 +26,17 @@ export const MainView = () => {
     localStorage.setItem("user", JSON.stringify(user));
   }
 
-  useEffect(() => {
-    if (!token) {
-      return;
-    }
-    fetch('https://jackoc-myflix.onrender.com/movies', {
-      headers: { Authorization: `Bearer ${token}` } 
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Movies loaded from API", data);
-
-        const moviesFromAPI = data.map((movie) => {
-          
-          return {
-            id: movie._id,
-            Title: movie.Title,
-            Description: movie.Description,
-            Genre: movie.Genre,
-            Director: movie.Director,
-            ImagePath: movie.ImagePath,
-            Featured: movie.Featured
-          }
-        });
-        setMovies(moviesFromAPI);
-        setFilteredMovies(moviesFromAPI);
+  const filterMovies = (searchInput) => {
+    if (searchInput.trim() === "") {
+      setFilteredMovies([]);
+    } else {
+      const filteredMovies = movies.filter(movie => {
+        return movie.Title.toLowerCase().includes(searchInput.toLowerCase());
       });
-  }, [token]);
+      setFilteredMovies(filteredMovies);
+    }
+  };
+
 
   const handleSearch = (event) => {
     const value = event.target.value;
@@ -69,6 +54,41 @@ export const MainView = () => {
     setFilteredMovies(results);
   }
 
+  const searchMovies = () => {
+    if (searchRef.current && searchRef.current.value.trim() !== "") {
+      filterMovies(searchRef.current.value);
+    } else {
+      setFilteredMovies([]);
+    }
+  };
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    fetch("https://jackoc-myflix.onrender.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Movies loaded from API", data);
+  
+        const moviesFromAPI = data.map((movie) => {
+          return {
+            id: movie._id,
+            Title: movie.Title,
+            Description: movie.Description,
+            Genre: movie.Genre,
+            Director: movie.Director,
+            ImagePath: movie.ImagePath,
+            Featured: movie.Featured,
+          };
+        });
+        setMovies(moviesFromAPI);
+      });
+    setFilteredMovies(movies);
+  }, [token]);
+
   return (
     <BrowserRouter>
       <NavigationBar 
@@ -78,6 +98,24 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear(); 
         }} />
+
+      <Row className="justify-content-md-center mt-5">
+        <Col md={6}>
+          {location.pathname === '/' && (
+            <div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <SearchBar handleSearch={handleSearch} searchMovies={searchMovies} />
+              </div>
+              <Row>
+                {filteredMovies.map((movie) => (
+                  <Col key={movie.id} md={4} className="mb-5">
+                    <MovieCard movie={movie} />
+                  </Col>
+                ))}
+              </Row>
+            </div>
+        </Col>
+      </Row>
   
       <Row className="justify-content-md-center mt-5">
         <Routes>
@@ -94,6 +132,7 @@ export const MainView = () => {
               </>
           }
           />
+          
 
           <Route 
           path="/login"
