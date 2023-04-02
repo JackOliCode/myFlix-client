@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -13,31 +13,65 @@ export const MainView = () => {
  
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser? storedUser : null); // this sets user as the storedUser
+  const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
-
+  const searchRef = useRef(null);
   const [movies, setMovies] = useState([]);
- 
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const updateUser = user => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
   }
 
+  const filterMovies = (searchInput) => {
+    if (searchInput.trim() === "") {
+      setFilteredMovies([]);
+    } else {
+      const filteredMovies = movies.filter(movie => {
+        return movie.Title.toLowerCase().includes(searchInput.toLowerCase());
+      });
+      setFilteredMovies(filteredMovies);
+    }
+  };
 
-   // useEffect hook allows React to perform side effects in component e.g fetching data
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    const results = movies.filter(movie => {
+      return movie.Title.toLowerCase().includes(value.toLowerCase());
+    });
+    setFilteredMovies(results);
+  }
+
+  const handleFilter = (genre) => {
+    const results = movies.filter(movie => {
+      return movie.Genre.Name === genre;
+    });
+    setFilteredMovies(results);
+  }
+
+  const searchMovies = () => {
+    if (searchRef.current && searchRef.current.value.trim() !== "") {
+      filterMovies(searchRef.current.value);
+    } else {
+      setFilteredMovies([]);
+    }
+  };
+
   useEffect(() => {
     if (!token) {
       return;
     }
-    fetch('https://jackoc-myflix.onrender.com/movies', {
-      headers: { Authorization: `Bearer ${token}` } 
+    fetch("https://jackoc-myflix.onrender.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
         console.log("Movies loaded from API", data);
-
+  
         const moviesFromAPI = data.map((movie) => {
-          
           return {
             id: movie._id,
             Title: movie.Title,
@@ -45,67 +79,97 @@ export const MainView = () => {
             Genre: movie.Genre,
             Director: movie.Director,
             ImagePath: movie.ImagePath,
-            Featured: movie.Featured
-          }
+            Featured: movie.Featured,
+          };
         });
         setMovies(moviesFromAPI);
       });
+    setFilteredMovies(movies);
   }, [token]);
 
-  // if not user is logged in, the LoginView component will be showing
+  return (
+    <BrowserRouter>
+      <NavigationBar 
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear(); 
+        }} />
 
-return (
-  <BrowserRouter>
-  <NavigationBar 
-    user={user}
-    onLoggedOut={() => {
-      setUser(null);
-      setToken(null);
-      localStorage.clear(); 
-  }} />
-  
-    <Row className="justify-content-md-center mt-5">
-      <Routes>
-        <Route
-          path="/signup"
-          element={
-          <>{user ? (
-            <Navigate to="/" />
-          ) : (
-            <Col md={5}>
-                <SignupView />
-            </Col>
-          )}
-            </>
-        }
+      <Row className="justify-content-md-center mt-5">
+        <Col md={6}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+        <input
+          type="text"
+          placeholder="Search movies"
+          value={searchTerm}
+          onChange={handleSearch}
+          ref={searchRef}
+          className="search_bar"
         />
 
-        <Route 
-        path="/login"
-        element={
-          <>
-            {user ? (
+        <Button variant="primary" onClick={searchMovies}>
+          Search
+        </Button>
+      </div>
+          {searchTerm.trim() === "" ? (
+        <></>
+      ) : filteredMovies.length === 0 ? (
+        <div>No movies found</div>
+      ) : (
+        filteredMovies.map((movie) => (
+          <Col key={movie.id} md={4} className="mb-5">
+            <MovieCard movie={movie} />
+          </Col>
+        ))
+      )}
+        </Col>
+      </Row>
+  
+      <Row className="justify-content-md-center mt-5">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+            <>{user ? (
               <Navigate to="/" />
             ) : (
               <Col md={5}>
-                <LoginView onLoggedIn={(user, token) => {
-                  setUser(user)
-                  setToken(token)
-                  }} 
-                />
+                <SignupView />
               </Col>
-            )}              
-          </>
-        }
-        />
+            )}
+              </>
+          }
+          />
+          
 
-      <Route
-        path="/movies/:movieId"
-        element={
-          <>
-          {!user ? (
-            <Navigate to="/login" replace />
-            ) : movies.length === 0 ? (
+          <Route 
+          path="/login"
+          element={
+            <>
+              {user ? (
+                <Navigate to="/" />
+              ) : (
+                <Col md={5}>
+                  <LoginView onLoggedIn={(user, token) => {
+                    setUser(user)
+                    setToken(token)
+                    }} 
+                  />
+                </Col>
+              )}              
+            </>
+          }
+          />
+
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+              {!user ? (
+                <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
               <div >The list is empty!</div>
             ) : (
               <Col md={5}>
