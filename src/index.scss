@@ -110,6 +110,13 @@ $body-bg: rgb(172, 202, 233);
   transition: .4s ease-in-out; 
 }
 
-
+.del_button {
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: sticky;
+  top: 100%;
+}
 
 @import '~bootstrap/scss/bootstrap.scss';

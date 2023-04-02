@@ -59,9 +59,9 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser}) => {
           </Col>
         ))}               
       </Row>
-      <Row >
+      <Row className="del_button">
         <Col >
-          <DeleteUser storedToken={token} storedUser={storedUser} />
+          <DeleteUser storedToken={token} storedUser={storedUser} className="del_button"/>
         </Col>   
       </Row>
     </Container>
