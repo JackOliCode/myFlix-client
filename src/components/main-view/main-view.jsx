@@ -114,6 +114,7 @@ export const MainView = () => {
                 ))}
               </Row>
             </div>
+          )}
         </Col>
       </Row>
   
