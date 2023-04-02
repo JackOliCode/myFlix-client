@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
+import "../signup-view/signup.scss";
 
 
 export const LoginView = ({ onLoggedIn }) => { // need to pass this on as a parameter
@@ -42,10 +43,16 @@ export const LoginView = ({ onLoggedIn }) => { // need to pass this on as a para
 
     
     return (
-        //start adding refactored Bootstrap code here
+      <Container style={{marginTop: "40%", marginBottom: "70%"}}>
+      <Row >
+        <Col >
+          <CardGroup>
+            <Card className="customCard card_body" style={{textAlign: "center", marginBottom: 50, width: '30px'}}>
+            <Card.Body>
+              <Card.Title>Log-In</Card.Title>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formUsername">
-            <Form.Label className="greenFont">Username:</Form.Label>
+            <Form.Label >Username:</Form.Label>
             <Form.Control
               type="text"
               value={username}
@@ -57,7 +64,7 @@ export const LoginView = ({ onLoggedIn }) => { // need to pass this on as a para
           </Form.Group>
     
           <Form.Group controlId="formPassword">
-            <Form.Label className="greenFont">Password:</Form.Label>
+            <Form.Label >Password:</Form.Label>
             <Form.Control
               type="password"
               value={password}
@@ -70,5 +77,14 @@ export const LoginView = ({ onLoggedIn }) => { // need to pass this on as a para
             Submit
           </Button>
         </Form>
+        </Card.Body>
+          </Card> 
+        </CardGroup>        
+      </Col>
+
+    </Row>
+
+
+  </Container>
       );
     };
