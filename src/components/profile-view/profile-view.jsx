@@ -55,13 +55,13 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser}) => {
         <h3 className="mb-5" style={{textAlign: "center"}}>Your Fave Movies: </h3>
         {favoriteMovies.map(movie => (
           <Col md={4} className="mb-5" key={movie.id}>
-            <FaveCard movie={movie} user={myuser} updateUser={updateUser} storedToken={token} />
+            <FaveCard movie={movie} myuser={myuser} updateUser={updateUser} storedToken={token} user={user} />
           </Col>
         ))}               
       </Row>
-      <Row className="del_button">
+      <Row style={{ marginTop: "200px" }}>
         <Col >
-          <DeleteUser storedToken={token} storedUser={storedUser} className="del_button"/>
+          <DeleteUser storedToken={token} storedUser={storedUser} />
         </Col>   
       </Row>
     </Container>
