@@ -13,18 +13,18 @@ export const MainView = () => {
  
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser? storedUser : null); // this sets user as the storedUser
+  const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
 
   const [movies, setMovies] = useState([]);
- 
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const updateUser = user => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
   }
 
-
-   // useEffect hook allows React to perform side effects in component e.g fetching data
   useEffect(() => {
     if (!token) {
       return;
@@ -49,63 +49,78 @@ export const MainView = () => {
           }
         });
         setMovies(moviesFromAPI);
+        setFilteredMovies(moviesFromAPI);
       });
   }, [token]);
 
-  // if not user is logged in, the LoginView component will be showing
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    const results = movies.filter(movie => {
+      return movie.Title.toLowerCase().includes(value.toLowerCase());
+    });
+    setFilteredMovies(results);
+  }
 
-return (
-  <BrowserRouter>
-  <NavigationBar 
-    user={user}
-    onLoggedOut={() => {
-      setUser(null);
-      setToken(null);
-      localStorage.clear(); 
-  }} />
+  const handleFilter = (genre) => {
+    const results = movies.filter(movie => {
+      return movie.Genre.Name === genre;
+    });
+    setFilteredMovies(results);
+  }
+
+  return (
+    <BrowserRouter>
+      <NavigationBar 
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear(); 
+        }} />
   
-    <Row className="justify-content-md-center mt-5">
-      <Routes>
-        <Route
-          path="/signup"
-          element={
-          <>{user ? (
-            <Navigate to="/" />
-          ) : (
-            <Col md={5}>
-                <SignupView />
-            </Col>
-          )}
-            </>
-        }
-        />
-
-        <Route 
-        path="/login"
-        element={
-          <>
-            {user ? (
+      <Row className="justify-content-md-center mt-5">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+            <>{user ? (
               <Navigate to="/" />
             ) : (
               <Col md={5}>
-                <LoginView onLoggedIn={(user, token) => {
-                  setUser(user)
-                  setToken(token)
-                  }} 
-                />
+                <SignupView />
               </Col>
-            )}              
-          </>
-        }
-        />
+            )}
+              </>
+          }
+          />
 
-      <Route
-        path="/movies/:movieId"
-        element={
-          <>
-          {!user ? (
-            <Navigate to="/login" replace />
-            ) : movies.length === 0 ? (
+          <Route 
+          path="/login"
+          element={
+            <>
+              {user ? (
+                <Navigate to="/" />
+              ) : (
+                <Col md={5}>
+                  <LoginView onLoggedIn={(user, token) => {
+                    setUser(user)
+                    setToken(token)
+                    }} 
+                  />
+                </Col>
+              )}              
+            </>
+          }
+          />
+
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+              {!user ? (
+                <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
               <div >The list is empty!</div>
             ) : (
               <Col md={5}>
