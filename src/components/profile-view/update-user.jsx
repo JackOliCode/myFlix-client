@@ -1,134 +1,76 @@
-import React, { useState } from 'react';
-import { Button, Form, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
 
-export const UpdateView = ({ storedToken, user, setUser }) => {
+export const UpdateView = ({ storedToken, user, handleUpdateUser }) => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
-
   const [username, setUsername] = useState(user.Username);
-  const [password, setPassword] = useState('');
   const [email, setEmail] = useState(user.Email);
+  const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState(user.Birthday);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const updateUser = (user) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    const updatedUser = { Username: username, Email: email, Password: password, Birthday: birthday };
+  
     fetch(`https://jackoc-myflix.onrender.com/users/${user.Username}`, {
-      headers: { Authorization: `Bearer ${token}` },
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${storedToken}`,
+      },
+      body: JSON.stringify(updatedUser),
     })
       .then((response) => response.json())
-      .then((updatedUser) => {
-        if (updatedUser) {
-          console.log(updatedUser); 
-          user(updatedUser.user);
-          localStorage.setItem('user', JSON.stringify(updatedUser.user));
-          window.location.reload();
-        }
+      .then((data) => {
+        handleUpdateUser(data);
+        localStorage.setItem('user', JSON.stringify(data));
+        setUsername(data.Username);
+        setEmail(data.Email);
+        setPassword('');
+        setBirthday(data.Birthday);
+        setShowSuccess(true);
       })
       .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const data = {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday,
-    };
-
-    fetch(
-      `https://jackoc-myflix.onrender.com/users/${user.Username}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          console.log(token)
-          alert('Changes saved');
-          setToken(storedToken);
-          updateUser(user);
-        } else {
-          alert('Oops, something\'s gone wrong');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
+        setShowError(true);
+        setErrorMessage("Error updating user information. Please try again later.");
+        console.error(error);
       });
   };
 
   return (
-    
-    <Row className="mt-2">
-      <Col >
-        <CardGroup>
-          <Card className="customCard card_body" style={{textAlign: "center", marginBottom: 50, width: '30px'}}>
-            <Card.Body>
-              <div className='h2'>Update user info</div>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group controlId='formUsername' className='mt-2'>
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control
-                    type='text'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    minLength='3'
-                    title="Username should contain more than 3 characters, may only contain letters, numbers and special characters: .,'-!?%&"
-                  />
-                </Form.Group>
+    <Form onSubmit={handleSubmit}>
+      <h3>Update User Information</h3>
+      {showError && <Alert variant="danger">{errorMessage}</Alert>}
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control type="text" placeholder="Enter new username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+      </Form.Group>
 
-                <Form.Group controlId='formEmail' className='mt-2'>
-                  <Form.Label>Email:</Form.Label>
-                  <Form.Control
-                    type='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    placeholder='Enter email'
-                  />
+      <Form.Group controlId="formEmail">
+        <Form.Label>Email:</Form.Label>
+        <Form.Control type="email" placeholder="Enter new email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      </Form.Group>
 
-                </Form.Group>
-                <Form.Group controlId='forBirthday' className='mt-2'>
-                  <Form.Label>Birthday:</Form.Label>
-                  <Form.Control
-                    type='date'
-                    value={birthday}
-                    onChange={(e) => setBirthday(e.target.value)}
-                  />
-                </Form.Group>
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control type="password" placeholder="Enter new password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </Form.Group>
 
-                <Form.Group controlId='forPassword' className='mt-2'>
-                  <Form.Label>Password:</Form.Label>
-                  <Form.Control
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    pattern="^[A-Za-z0-9 .,'\-!?%&]+$"
-                    title="Password may only contain letters, numbers and special characters: .,'-!?%&"
-                    placeholder='Please enter your password to update'
-                  />
-                  </Form.Group>
+      <Form.Group controlId="formBirthday">
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control type="date" placeholder="Enter new birthday" value={birthday} onChange={(e) => setBirthday(e.target.value)} required />
+      </Form.Group>
 
-                <Row>
-                  <Col className='text-end'>
-                    <Button variant='primary' type='submit' className='mt-3'>
-                      Update
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
-        </CardGroup>
-      </Col>
-    </Row>
+      <Button variant="primary" type="submit">
+        Update
+      </Button>
+    </Form>
   );
 };
+
+// console.log(data)
+// console.log(updateUser)
