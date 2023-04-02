@@ -1,3 +1,5 @@
 node_modules
 .cache
 .parcel-cache
+dist/index.75d3e5e1.css.map
+dist/index.b4b6dfad.js
