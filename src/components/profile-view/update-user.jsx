@@ -72,5 +72,3 @@ export const UpdateView = ({ storedToken, user, handleUpdateUser }) => {
   );
 };
 
-// console.log(data)
-// console.log(updateUser)
