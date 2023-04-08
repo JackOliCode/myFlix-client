@@ -30,4 +30,9 @@ I used the following for this project;
 - HTML
 - CSS/SCSS
 
+myFlix app
+- Frontend: Written with JavaScript/React; hosted on Netlify.
+- Backend (Server Logic): Written with Node/Express; hosted on Heroku.
+- Backend (Database): MongoDB for users and movies; stored in MongoDB Cloud.
+
 And if you want to see more, visit the live version here; https://jackocflix.netlify.app/
