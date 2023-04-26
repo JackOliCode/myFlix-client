@@ -73,7 +73,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
       <Link to={`/`}>
         <Card.Img src={movie.ImagePath} />
       </Link>
-        <Card.Body>
+        <Card.Body className="mb-5">
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>
             <span className="bold_title">Director: </span>
