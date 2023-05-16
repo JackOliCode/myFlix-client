@@ -144,7 +144,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
               <div >The list is empty!</div>
             ) : (
-              <Col md={5}>
+              <Col xs={10} md={8}>
                 <MovieView
                   movies={movies} user={user} token={token} updateUser={updateUser}/>
               </Col>
@@ -186,7 +186,7 @@ export const MainView = () => {
               ) : (
                 <Row style={{marginTop:'30px'}}>
                   {filteredMovies.map((movie) => (
-                    <Col key={movie.id} md={4} className="mb-5">
+                    <Col key={movie.id} xs={10} sm={4} className="mb-5">
                       <MovieCard movie={movie} />
                     </Col>
                   ))}
@@ -198,6 +198,7 @@ export const MainView = () => {
             {movies.map((movie) => (
               <Col
                 key={movie.id}
+                xs={10}
                 md={4}
                 className="mb-5"
               >
