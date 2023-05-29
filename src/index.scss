@@ -145,8 +145,14 @@ body {
   border-bottom-left-radius: 0% !important;
 }
 
-@media screen and (max-width: 950px) {
+@media (max-width: 950px) {
   .nav-link {
+    font-size: 30px !important;
+  }
+}
+
+@media (max-width: 950px) {
+  .navbar-brand {
     font-size: 30px !important;
   }
 }

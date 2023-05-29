@@ -11,3 +11,18 @@
     border-bottom-left-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
+  
+  @media (max-width: 950px) {
+    .nav-link {
+      font-size: 30px !important;
+    }
+  
+    Navbar-Brand {
+      font-size: 30px !important;
+    }
+
+    .nav_bg {
+        font-size: 30px !important;
+    }
+  }

@@ -27,6 +27,12 @@ h5 {
   box-shadow: 0 8px 32px #1f26875e;
 }
 
+@media (max-width: 950px) {
+  .nav-link, Navbar-Brand, .nav_bg {
+    font-size: 30px !important;
+  }
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -156,8 +162,8 @@ body {
   border-bottom-left-radius: 0% !important;
 }
 
-@media screen and (max-width: 950px) {
-  .nav-link {
+@media (max-width: 950px) {
+  .nav-link, .navbar-brand {
     font-size: 30px !important;
   }
 }
