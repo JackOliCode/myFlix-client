@@ -6,10 +6,7 @@ export const UserView = ({ user }) => {
     return (
         <Row>
           <CardGroup></CardGroup>
-          <Col md={4}>
-            <img src='https://via.placeholder.com/125x125.png?text=You' />
-          </Col>
-          <Col md={6}>
+          <Col md={12}>
           <div >
             <span>Username: </span>
             <span className='fw-bolder'>{user.Username}</span>
