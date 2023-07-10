@@ -144,7 +144,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
               <div >The list is empty!</div>
             ) : (
-              <Col xs={10} md={8}>
+              <Col xs={6} md={6}>
                 <MovieView
                   movies={movies} user={user} token={token} updateUser={updateUser}/>
               </Col>
@@ -198,8 +198,8 @@ export const MainView = () => {
             {movies.map((movie) => (
               <Col
                 key={movie.id}
-                xs={10}
-                md={4}
+                md={12}
+                lg={4}
                 className="mb-5"
               >
                 <MovieCard movie={movie} />
