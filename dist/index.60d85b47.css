@@ -16,11 +16,8 @@ h5 {
 
 body {
   min-height: 100vh;
-  margin: 0;
-}
-
-.bg_gradient {
   background-image: linear-gradient(80deg, #ea9df7 0%, #f9affa 5%, #dfc4eb 15%, #a1cde0 19%, #00d4ff 23%, #81e9f4ec 30%, #fcbbef 41%, #57c9ed 50%, #e1edf1 61%, #ea9df7 73%, #999cff 84%, #00d4ff 94%);
+  margin: 0;
 }
 
 .customCard {
@@ -164,19 +161,16 @@ body {
   font-size: 20px;
 }
 
-@media screen and (max-width: 700px) {
-  .nav-bar-class, .nav-link, .navbar-brand {
-    font-size: 30px !important;
-  }
-
-  .card-img {
-    height: 100% !important;
+@media (max-width: 1000px) {
+  body, .nav-bar-class, h2, .h2, h3, .h3, h4, .h4, h5, .h5, button, .navbar-brand, input {
+    font-size: 40px !important;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .nav_bg {
-    height: 105px !important;
+@media (max-width: 400px) {
+  .row {
+    flex-direction: column !important;
+    align-content: center !important;
   }
 }
 

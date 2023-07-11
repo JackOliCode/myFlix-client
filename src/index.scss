@@ -3,18 +3,17 @@ $body-bg: rgb(172, 202, 233);
 
 body {
   min-height: 100vh;
-  margin: 0;}
-
-.bg_gradient {
-    background-image: linear-gradient(80deg, rgba(234,157,247,1) 0%, 
+  margin: 0;
+  background-image: linear-gradient(80deg, rgba(234,157,247,1) 0%, 
     rgba(249,175,250,1) 5%, rgba(223,196,235,1) 15%, 
     rgba(161,205,224,1) 19%, rgba(0,212,255,1) 23%, 
     rgba(129,233,244,0.9248074229691877) 30%, 
     rgba(252,187,239,1) 41%, rgba(87,201,237,1) 50%, 
     rgba(225,237,241,1) 61%, rgba(234,157,247,1) 73%,
     rgba(153,156,255,1) 84%, rgba(0,212,255,1) 94%);
-    
-  }
+}
+
+
 
   .customCard  {
     background-color: transparent !important;
@@ -167,40 +166,36 @@ body {
   font-size: 20px;
 }
 
+@media all and (max-width: 1000px) {
+  body {
+    font-size: 40px !important;
+}
+}
 
-@media screen and (max-width: 700px) {
+@media all and (max-width: 1000px) {
   .nav-bar-class {
-    font-size: 30px !important;
-  }
+    font-size: 40px !important;
 }
-  
-
-// media queries below //
-
-@media screen and (max-width: 700px) {
-  .nav-link {
-    font-size: 30px !important;
-  }
 }
 
-@media screen and (max-width: 700px) {
-  .navbar-brand {
-    font-size: 30px !important;
-  }
+@media all and (max-width: 1000px) {
+  h2, h3, h4, h5 {
+    font-size: 40px !important;
+}
 }
 
-@media screen and (max-width: 700px) {
-  .card-img {
-    height: 100% !important;
-  }
+@media all and (max-width: 1000px) {
+  button, .navbar-brand, input {
+    font-size: 40px !important;
+}
 }
 
-@media screen and (max-width: 768px) {
-  .nav_bg {
-    height: 105px !important;
+@media all and (max-width: 400px) {
+  .row {
+    flex-direction: column !important;
+    align-content: center !important;
   }
 }
-
 
 
 @import '~bootstrap/scss/bootstrap.scss';

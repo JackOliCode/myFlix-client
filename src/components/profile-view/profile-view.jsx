@@ -38,8 +38,8 @@ export const ProfileView = ({token, movies, onLoggedOut, updateUser}) => {
 
   return (
     <Container>
-      <Row style={{alignItems: "baseline"}}>
-        <Col xs={12} sm={6} md={5}> 
+      <Row className="profile-row" style={{alignItems: "baseline"}}>
+        <Col md={5}> 
           <Card className="customCard card_body">
             <Card.Body>
               <UserView user={myuser} />

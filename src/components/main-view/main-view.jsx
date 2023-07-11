@@ -107,7 +107,9 @@ export const MainView = () => {
             <>{user ? (
               <Navigate to="/" />
             ) : (
-              <Col md={5}>
+              <Col 
+                lg={5}
+                md={12}>
                 <SignupView />
               </Col>
             )}
@@ -123,7 +125,9 @@ export const MainView = () => {
               {user ? (
                 <Navigate to="/" />
               ) : (
-                <Col md={5}>
+                <Col 
+                lg={5}
+                md={12}>
                   <LoginView onLoggedIn={(user, token) => {
                     setUser(user)
                     setToken(token)
@@ -186,7 +190,7 @@ export const MainView = () => {
               ) : (
                 <Row style={{marginTop:'30px'}}>
                   {filteredMovies.map((movie) => (
-                    <Col key={movie.id} xs={10} sm={4} className="mb-5">
+                    <Col key={movie.id} sm={12} lg={6} className="mb-5">
                       <MovieCard movie={movie} />
                     </Col>
                   ))}
